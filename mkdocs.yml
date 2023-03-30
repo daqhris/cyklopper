@@ -6,4 +6,10 @@ theme:
 nav:
   - Presentation: '01_presentation.md'
   - Team: '02_presentation.md'
+  - Galerie: 'gallery.md'
   - Information: '03_info.md'
+
+plugins:
+  - mkdocs-simple-hooks:
+      hooks:
+        on_pre_build: "plugins.hooks:on_pre_build"
