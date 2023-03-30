@@ -1,0 +1,9 @@
+site_name: cyklopper
+site_dir: public
+theme:
+  name: null
+  custom_dir: 'theme'
+nav:
+  - Presentation: '01_presentation.md'
+  - Team: '02_presentation.md'
+  - Information: '03_info.md'

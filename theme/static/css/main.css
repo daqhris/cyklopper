@@ -1,0 +1,41 @@
+:root {
+	--nav-height: 30px
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-size: 12px;
+	line-height: 1.2em;
+	font-family: sans-serif;
+}
+
+nav {
+	margin: 0px;
+	padding: 0px;
+	height: var(--nav-height);
+	border-bottom: 1px solid;
+	position: fixed;
+	width: 100%
+}
+nav,
+nav ul
+{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+nav ul li {
+	margin: 0 2em;
+	list-style: none;
+}
+main {
+	padding-top: calc(var(--nav-height) * 2)
+}
+main section  {
+	height: calc(100vh - var(--nav-height));
+	scroll-margin-top: calc(var(--nav-height) * 2);
+	scroll-padding-block: 100vh;
+}
