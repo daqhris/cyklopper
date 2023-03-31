@@ -52,7 +52,7 @@ a.logo {
 h1 {
 	/* letter-spacing: -.05em;  */
 	text-transform: uppercase;
-	font-size: 18vh;
+	font-size: 10vw;
 	line-height: 1em;
 	margin-top: .5em;
 	font-weight: bold;
@@ -95,12 +95,21 @@ main section  {
 }
 
 .content {
-	/* max-width: 600px; */
+	width: calc(40% - 3em);
+	width: calc(30% - 1em);
 	padding: 1em;
+}
+.image {
+	width: 60%;
+	background: #ccc;
+}
+.image img {
+	width: 100%;
+	height: auto;
 }
 
 p {
-	font-size: 2em;
+	font-size: 1.8vw;
 	line-height: 1.2em;
 	
 }
@@ -118,6 +127,7 @@ section#part-top {
 }
 section#part1 {
 	display: flex;
+	flex-wrap: wrap;
 }
 section#part1 .image {
 	border-right: 5px solid darkblue;
