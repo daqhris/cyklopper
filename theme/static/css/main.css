@@ -96,7 +96,6 @@ main section  {
 
 .content {
 	width: calc(40% - 3em);
-	width: calc(30% - 1em);
 	padding: 1em;
 }
 .image {
