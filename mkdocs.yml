@@ -1,15 +1,16 @@
 site_name: cyklopper
+baseline: Atelier vélo participatif Cyklopper
 site_dir: public
 theme:
   name: null
   custom_dir: 'theme'
 nav:
   - Presentation: '01_presentation.md'
+  - Information: '03_info.md'
   - Team: '02_presentation.md'
   - Galerie: 'gallery.md'
-  - Information: '03_info.md'
 
-plugins:
-  - mkdocs-simple-hooks:
-      hooks:
-        on_pre_build: "plugins.hooks:on_pre_build"
+# plugins:
+#   - mkdocs-simple-hooks:
+#       hooks:
+#         on_pre_build: "plugins.hooks:on_pre_build"

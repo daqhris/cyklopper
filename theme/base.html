@@ -8,6 +8,11 @@
 <body>
 	<nav>
 	<ul>
+		<li>
+			<a class="logo" href="#part-top">
+				{{ config.site_name }}
+			</a>
+		</li>
 		{% for item in nav %}
 		<li>
 			<a href="#part{{loop.index}}">
@@ -22,6 +27,19 @@
 	{% block content %}
 	{% endblock %}
 </main>
+
+<footer>
+	<marquee behavior="" direction="" scrollamount="10">
+		<ul>
+			<li>
+				Brocante vélo - Place Saint-Denis - mercredi 24 mai
+			</li>
+			<li>
+				Atelier en mixité choisie avec les Déchainées - 28 avril 
+			</li>
+		</ul>
+	</marquee>
+</footer>
 	
 </body>
 </html>
