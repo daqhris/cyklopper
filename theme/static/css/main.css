@@ -61,6 +61,22 @@ h1 {
   -webkit-text-stroke-width: 5px;
 	color: white;
 }
+
+h2 {
+	font-size: 3em;
+	line-height: 1em;
+	font-weight: normal;
+	border-bottom: 5px solid darkblue;
+	padding-bottom: .5em;
+	margin-bottom: .5em;
+}
+
+.border-top {
+	border-top: 5px solid darkblue;
+	padding-top: .5em;
+	margin-top: .5em;
+}
+
 nav {
 	top: 0px;
 	margin: 0px;
@@ -124,11 +140,18 @@ section#part-top {
 	background-image: url('../images/fond.svg');
 	background-size: 100%;
 }
-section#part1 {
+section#part1,
+section#part2
+{
 	display: flex;
 	flex-wrap: wrap;
 }
-section#part1 .image {
+section#part1 .image ,
+section#part2 .image {
+	border-right: 5px solid darkblue;
+}  
+section#part2 .content {
+	background: yellow;
 	border-right: 5px solid darkblue;
 }
 
