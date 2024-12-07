@@ -14,5 +14,21 @@
 			</section>
 		{% endfor %}
 
+		<section id="galery">
+			<div class="slide">
+				{% for image in config.galery%}
+					<img src="{{ image }}" alt="">
+				{% endfor %}
+
+			</div>
+		</section>
+
+		<section id="part-end">
+			<a href="https://www.facebook.com/atelierCyklopper/" class="bulle"> Facebook </a>
+			<a href="https://www.instagram.com/cyklopper/?__d=1%2F" class="bulle"> Instagram </a>
+			<a href="mailto:ateliercyklopper@protonmail.com" class="bulle">Contact</a>
+
+		</section>
+
 
 {% endblock %}

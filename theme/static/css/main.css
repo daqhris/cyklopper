@@ -28,6 +28,9 @@
 	--bg-default: #73ddff; 
 }
 
+
+/* * { box-sizing: border-box; } */
+
 html {
 	scroll-behavior: smooth;
 }
@@ -36,7 +39,6 @@ body {
 	font-size: 20px;
 	line-height: 2.2em;
 	font-family: 'hanken';
-	margin: .5em;
 	color: var(--cl-default);
 	width: 100%;
 }
@@ -60,6 +62,7 @@ h1 {
   -webkit-text-fill-color: white; /* Will override color (regardless of order) */
   -webkit-text-stroke-width: 5px;
 	color: white;
+	padding: .5rem;
 }
 
 h2 {
@@ -140,19 +143,61 @@ section#part-top {
 	background-image: url('../images/fond.svg');
 	background-size: 100%;
 }
+section#part-end {
+	padding-top: 1em;
+	background: var(--bg-default);
+
+	height: 80vh;
+
+	background-repeat: no-repeat;
+	background-image: url('../images/end.svg');
+	background-size: 100%;
+}
 section#part1,
-section#part2
+section#part2,
+section#part3
 {
 	display: flex;
 	flex-wrap: wrap;
 }
 section#part1 .image ,
-section#part2 .image {
+section#part2 .image,
+section#part3 .image{
 	border-right: 5px solid darkblue;
 }  
 section#part2 .content {
 	background: yellow;
 	border-right: 5px solid darkblue;
+}
+section#part3 {
+	  background: orange;
+} 
+section#part3 .image{
+	background: var(--bg-default)
+}
+section#part3 .content {
+	background: orange;
+	font-size: 2.4rem;
+}
+#galery .slide {
+	display: flex;
+	height: 80vh;
+	overflow-y: hidden;
+	overflow-x: scroll;
+	background: var(--cl-default);
+}
+#galery .slide img {
+	height: 100%;
+	width: auto;
+  mix-blend-mode: screen;
+  -webkit-filter: grayscale(100%) contrast(100%);
+  filter: grayscale(100%) contrast(100%);
+  opacity: 1;
+}
+
+#galery .slide img:hover {
+	filter: initial;
+	mix-blend-mode: initial;
 }
 
 footer {
@@ -177,3 +222,33 @@ footer ul {
 footer ul li {
 	margin-right: 2em;
 }
+
+
+#part-end {
+	display: flex;
+	align-items: flex-end;
+	margin-bottom: 80px;
+}
+.bulle {
+	background: white;
+	border: 3px solid darkblue;
+	border-radius: 50%;
+	padding: 1rem;
+	margin: 1rem;
+	cursor: pointer;
+}
+
+.bulle:hover {
+	background: darkblue;
+	color: white;
+}
+
+
+@media screen and (max-width: 992px) {
+section#part1,
+section#part2
+{
+	display: block;
+}
+}
+ 

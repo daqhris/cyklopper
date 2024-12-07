@@ -7,10 +7,13 @@ theme:
 nav:
   - Presentation: '01_presentation.md'
   - Information: '03_info.md'
-  - Team: '02_presentation.md'
-  - Galerie: 'gallery.md'
+  - Team: '02_team.md'
 
-# plugins:
-#   - mkdocs-simple-hooks:
-#       hooks:
-#         on_pre_build: "plugins.hooks:on_pre_build"
+galery:
+  - images/image-01.jpg
+  - images/image-02.jpg
+  - images/image-03.jpg
+
+actu:
+  - 'Atelier en mixité choisie avec les Déchainées - 28 avril'
+  - 'brocante vélo - place saint-denis - mercredi 24 mai'
