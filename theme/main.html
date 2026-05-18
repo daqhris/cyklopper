@@ -8,7 +8,7 @@
 				</h1>
 		</section>
 
-		{% for item in nav %}
+		{% for item in nav if item.title != 'actu' %}
 			<section id="part{{loop.index}}">
 						{{ item.content }}
 			</section>

@@ -8,6 +8,7 @@ nav:
   - Presentation: '01_presentation.md'
   - Information: '03_info.md'
   - Team: '02_team.md'
+  - actu: 'actu.md'
 
 galery:
   - images/image-01.jpg
@@ -15,5 +16,9 @@ galery:
   - images/image-03.jpg
 
 actu:
-  - 'Atelier en mixité choisie avec les Déchainées - 28 avril'
-  - 'brocante vélo - place saint-denis - mercredi 24 mai'
+  - 'Cosmik Bike Festival - 30/31 mai et 1<sup>er</sup>  juin - Zonneklopper.'
+  - 'Brocante vélo - date à venir.'
+
+
+plugins:
+  - macros

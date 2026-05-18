@@ -6,6 +6,14 @@
 	<link rel="stylesheet" href="static/css/main.css">
 </head>
 <body>
+		{% for actu in nav if actu.title == 'actu' %}
+				<div class="popup">
+					<div class="bandeau">
+						<div class="close" onClick="document.querySelector('.popup').classList.add('closed')">X</div>
+					</div>
+						{{ actu.content }}
+				</div>
+		{% endfor %}
 	<nav>
 	<ul>
 		<li>
@@ -13,7 +21,7 @@
 				{{ config.site_name }}
 			</a>
 		</li>
-		{% for item in nav %}
+		{% for item in nav if item.title != 'actu' %}
 		<li>
 			<a href="#part{{loop.index}}">
 				{{ item.title }}
@@ -41,12 +49,11 @@
 <footer>
 	<marquee behavior="" direction="" scrollamount="10">
 		<ul>
+			{% for actu in config.actu %}
 			<li>
-				brocante vélo - place saint-denis - mercredi 24 mai
+				{{ actu }}
 			</li>
-			<li>
-				Atelier en mixité choisie avec les Déchainées - 28 avril 
-			</li>
+			{% endfor %}
 		</ul>
 	</marquee>
 </footer>

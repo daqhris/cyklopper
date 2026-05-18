@@ -7,7 +7,7 @@ title: team
 </div>
 
 <div class="content">
-    L'équipe de bénévoles: Denis, Tim, Marie-Émilie, Camille, Salomon, Philippine, Marcel ...
+    L'équipe de bénévoles: Denis, Tim, Marie-Émilie, Camille, Salomon, Philippine, Marcel, Nawfel ...
 </div>
 
 
