@@ -3,7 +3,7 @@ title: actu
 slug: actu
 ---
 
-# Cosmik Bike Festival
+# Cosmik Bike Festival - 1ère édition (2025)
 
 <br>
 
@@ -45,4 +45,3 @@ slug: actu
 <br> 
 
 ## Tout le weekend vélos pour enfants a disposition pour rouler sur le circuit. Petite restauration et bonne ambiance !  
-
