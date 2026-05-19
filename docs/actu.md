@@ -9,10 +9,12 @@ slug: actu
 
 ## 4-5 juillet 2026 · ZonneKlopper 
 ## Avenue de la Verrerie 23, 1190 Forest, Belgique  
-Un festival annuel qui présente des spectacles époustouflants, des jeux collectifs, des projections cinéma et des surpises festives autour du vélo. Il est organisé par des cyclistes passioné.e.s de l'atelier participatif Cyklopper au sein de ZonneKlopper au Sud de Bruxelles.
+
+Un festival annuel qui présente des spectacles époustouflants, des jeux collectifs, des projections de films et des surprises festives autour du vélo. Il est organisé par l'atelier participatif Cyklopper au sein de ZonneKlopper au Sud de Bruxelles.
 
 <br>
-<br>
+
+<!--
 
 ## Programme de la 1ère édition (2025)
 
@@ -50,5 +52,5 @@ Un festival annuel qui présente des spectacles époustouflants, des jeux collec
 
 <br> 
 <br> 
-
-## Tout le weekend vélos pour enfants a disposition pour rouler sur le circuit. Petite restauration et bonne ambiance !  
+-->
+#### Tout le weekend vélos pour enfants à disposition pour rouler sur le circuit. Petite restauration et bonne ambiance !
