@@ -3,13 +3,20 @@ title: actu
 slug: actu
 ---
 
-# Cosmik Bike Festival - 1ère édition (2025)
+# Cosmik Bike Festival - 2è édition
 
 <br>
 
-## 30/31 mai et 1er juin 2025  
-## Zonneklopper, 23 avenue de la verrerie, Forest  
+## 4-5 juillet 2026 · ZonneKlopper 
+## Avenue de la Verrerie 23, 1190 Forest, Belgique  
+Un festival annuel qui présente des spectacles époustouflants, des jeux collectifs, des projections cinéma et des surpises festives autour du vélo. Il est organisé par des cyclistes passioné.e.s de l'atelier participatif Cyklopper au sein de ZonneKlopper au Sud de Bruxelles.
 
+<br>
+<br>
+
+## Programme de la 1ère édition (2025)
+
+#### 30/31 mai et 1er juin 2025 
 #### Vendredi : 20h30 - 23h30
 - 20h30 - arrivée de la critical mass
 - 21h - fanfare pelouse jazz band
