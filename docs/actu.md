@@ -53,4 +53,4 @@ Un festival annuel qui présente des spectacles époustouflants, des jeux collec
 <br> 
 <br> 
 -->
-#### Tout le weekend vélos pour enfants à disposition pour rouler sur le circuit. Petite restauration et bonne ambiance !
+_Tout le weekend: Vélos pour enfants à disposition pour rouler sur le circuit. Petite restauration et bonne ambiance._
