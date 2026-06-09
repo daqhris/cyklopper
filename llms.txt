@@ -1,0 +1,30 @@
+# Cyklopper
+
+> Atelier vélo participatif à Bruxelles / Participatief fietswerkplaats in Brussel
+
+Cyklopper is a community bicycle repair workshop based in Brussels, Belgium.
+It offers free and participatory repair sessions, tools, and skill-sharing for cyclists of all levels.
+
+## Pages
+
+- [Home](https://cyklopper.be/): Main page with overview, news, and contact
+- [Présentation](https://cyklopper.be/01_presentation/): About the workshop and its mission
+- [Équipe](https://cyklopper.be/02_team/): The people behind Cyklopper
+- [Infos pratiques](https://cyklopper.be/03_info/): Opening hours, location, how to participate
+- [Actualités](https://cyklopper.be/actu/): Latest news and events
+- [Galerie](https://cyklopper.be/gallery/): Photos from workshops and events
+
+## Events
+
+- Cosmik Bike Festival 2025: Annual cycling culture festival organised by Cyklopper
+  - Archive: [https://cyklopper.be/cosmik-2025/](https://cyklopper.be/cosmik-2025/)
+
+## Contact
+
+- Email: ateliercyklopper@protonmail.com
+- Facebook: https://www.facebook.com/atelierCyklopper/
+- Instagram: https://www.instagram.com/cyklopper/
+
+## Language
+
+Primary language: French. Secondary: Dutch. Location: Brussels, Belgium.
