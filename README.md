@@ -1,20 +1,15 @@
-# Codebase Structure
+# Website Structure
 
-cyklopper/
+This is the open-source code powering the website of a bike atelier located at Zonneklopper (Forest, Brussels).
+
+cyklopper.be/
 ├── .gitignore
 ├── .htaccess
 ├── README.md
 ├── CNAME
-├── 01_presentation/
-│   └── index.html
-├── 02_team/
-│   └── index.html
-├── 03_info/
-│   └── index.html
-├── actu/
-│   └── index.html
-├── gallery/
-│   └── index.html
+├── images/
+│   └── CosmikBikeFestival2025/
+├── images-bd/
 ├── index.html
 ├── sitemap.xml
 ├── static/
