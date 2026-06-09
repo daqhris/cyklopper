@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://cyklopper.be/sitemap.xml
