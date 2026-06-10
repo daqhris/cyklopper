@@ -9,6 +9,29 @@
 	<link rel="icon" type="image/x-icon" href="static/images/logo.jpg">
 	<link rel="stylesheet" href="static/css/main.css">
 	<style>
+		/* ── Hanken font: re-declared with correct relative paths from subfolder ──
+		   main.css uses ../fonts/... which resolves from /static/css/ to /static/fonts/
+		   but from /cosmik-2025/ we need ../../static/fonts/ → or just redeclare here */
+		@font-face {
+			font-family: 'hanken';
+			src: url('static/fonts/hanken/Hanken-Book.ttf');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'hanken';
+			src: url('static/fonts/hanken/Hanken-light.ttf');
+			font-weight: lighter;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'hanken';
+			src: url('static/fonts/hanken/Hanken-Bold.ttf');
+			font-weight: bold;
+			font-style: normal;
+		}
+		body { font-family: 'hanken', sans-serif; }
+
 		/* ── Palette 2025: nuit + orange brique + bleu marine + jaune ── */
 		:root {
 			--c25-night:   #111318;
