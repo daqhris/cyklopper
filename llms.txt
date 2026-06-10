@@ -2,22 +2,37 @@
 
 > Atelier vélo participatif à Bruxelles / Participatief fietswerkplaats in Brussel
 
-Cyklopper is a community bicycle repair workshop based in Brussels, Belgium.
-It offers free and participatory repair sessions, tools, and skill-sharing for cyclists of all levels.
+Cyklopper is a community bicycle repair workshop based in Forest, Brussels, Belgium.
+It offers free and participatory repair sessions, shared tools, and skill-sharing for cyclists of all levels.
+The workshop is open every Thursday from 16:00 to 20:00.
 
 ## Pages
 
-- [Home](https://cyklopper.be/): Main page with overview, news, and contact
-- [Présentation](https://cyklopper.be/01_presentation/): About the workshop and its mission
-- [Équipe](https://cyklopper.be/02_team/): The people behind Cyklopper
-- [Infos pratiques](https://cyklopper.be/03_info/): Opening hours, location, how to participate
-- [Actualités](https://cyklopper.be/actu/): Latest news and events
-- [Galerie](https://cyklopper.be/gallery/): Photos from workshops and events
+- [Accueil / Home](https://cyklopper.be/): Main page — presentation, photo gallery, hours, team, contact, and festival information. Includes a live countdown to Cosmik Bike Festival 2026 and a language switcher (FR/NL/EN).
+- [Cosmik Bike Festival 2025](https://cyklopper.be/cosmik-2025/): Archive of the 1st edition — full programme, photo gallery (30–31 May & 1 June 2025).
+- [Cosmik Bike Festival 2026](https://cyklopper.be/cosmik-2026/): 2nd edition — official poster, live countdown, venue info, volunteer call-to-action (4–5 July 2026).
 
-## Events
+## About the Workshop
 
-- Cosmik Bike Festival 2025: Annual cycling culture festival organised by Cyklopper
-  - Archive: [https://cyklopper.be/cosmik-2025/](https://cyklopper.be/cosmik-2025/)
+Cyklopper promotes cycling autonomy ("vélonomie") through participatory repair, knowledge sharing, and the reuse of recovered bicycle parts. New parts are sold at accessible prices; second-hand parts are pay-what-you-can.
+
+Location: Zonneklopper, 23 avenue de la Verrerie, 1190 Forest, Brussels, Belgium.
+
+## Cosmik Bike Festival
+
+An annual non-commercial cycling culture festival held at Zonneklopper. Features performances, workshops, film screenings, music, collective games, and unusual bikes.
+
+- 1st edition: 30–31 May & 1 June 2025 — archive at https://cyklopper.be/cosmik-2025/
+- 2nd edition: 4–5 July 2026 — https://cyklopper.be/cosmik-2026/
+
+## Code & Credits
+
+- Open-source code repository: https://github.com/daqhris/cyklopper
+- License: EUPL-1.2 (code only)
+- Web development, management & maintenance: Chris-Armel Iradukunda (daqhris) — https://daqhris.com
+- Coding, Graphic design & illustrations: Antoine Gelgon — https://antoine-gelgon.fr
+- Coding assistance: Claude Sonnet 4.6 (Anthropic)
+- Illustrations and photographs are copyright their respective authors, all rights reserved.
 
 ## Contact
 
@@ -27,4 +42,4 @@ It offers free and participatory repair sessions, tools, and skill-sharing for c
 
 ## Language
 
-Primary language: French. Secondary: Dutch. Location: Brussels, Belgium.
+Primary language: French (fr-BE). Secondary languages: Dutch (nl-BE), English (en). Location: Brussels, Belgium.
