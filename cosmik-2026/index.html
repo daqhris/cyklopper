@@ -7,9 +7,12 @@
 	<meta name="description" content="Cosmik Bike Festival 2026 — 2ème édition mondiale du vélo de Forest. 4 et 5 juillet 2026, Zonneklopper, Forest, Bruxelles.">
 	<meta name="theme-color" content="#FFFF00"/>
 	<link rel="icon" type="image/x-icon" href="../static/images/logo.jpg">
-	<link rel="stylesheet" href="static/css/main.css">
+	<link rel="stylesheet" href="../static/css/main.css">
 	<style>
 		* { box-sizing: border-box; }
+
+		/* Kill any nav from main.css leaking in */
+		nav { display: none !important; }
 
 		body {
 			background: #0a0a0a;
@@ -292,7 +295,7 @@
 
 		<h2>Adresse</h2>
 		<p>Zonneklopper — 23 avenue de la Verrerie, 1190 Forest, Belgique.<br>
-		<a href="https://www.openstreetmap.org/node/11128283733" target="_blank" rel="noopener" style="color:#FFFF00;">Voir sur OpenStreetMap →</a></p>
+		<a href="https://www.openstreetmap.org/?mlat=50.8163&mlon=4.3363#map=17/50.8163/4.3363" target="_blank" rel="noopener" style="color:#FFFF00;">Voir sur OpenStreetMap →</a></p>
 	</div>
 
 	<div class="cta-band">
@@ -312,18 +315,31 @@
 	</footer>
 
 	<script>
-		/* ── Poster: show real image if it loads, else keep placeholder ── */
-		const posterImg = document.getElementById('poster-img');
-		const posterWrap = document.getElementById('poster-wrap');
-		const posterPlaceholder = document.getElementById('poster-placeholder');
-		posterImg.onload = function() {
-			posterWrap.style.display = '';
-			posterPlaceholder.style.display = 'none';
-		};
-		posterImg.onerror = function() {
-			posterWrap.style.display = 'none';
-			posterPlaceholder.style.display = '';
-		};
+		/* ── Poster: show real image if it loads, else keep placeholder ──
+		   Check .complete first: if the browser already fired load/error
+		   before this script ran, the event handlers would never fire. ── */
+		(function () {
+			var img = document.getElementById('poster-img');
+			var wrap = document.getElementById('poster-wrap');
+			var placeholder = document.getElementById('poster-placeholder');
+
+			function showPoster() {
+				wrap.style.display = '';
+				placeholder.style.display = 'none';
+			}
+			function showPlaceholder() {
+				wrap.style.display = 'none';
+				placeholder.style.display = '';
+			}
+
+			if (img.complete) {
+				// Browser already settled — check naturalWidth to distinguish load vs error
+				if (img.naturalWidth > 0) { showPoster(); } else { showPlaceholder(); }
+			} else {
+				img.addEventListener('load', showPoster);
+				img.addEventListener('error', showPlaceholder);
+			}
+		})();
 
 		/* ── Countdown ── */
 		// Festival: 4 July 2026 at 14:00 CEST (= UTC+2 → 12:00 UTC)

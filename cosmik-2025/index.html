@@ -7,20 +7,39 @@
 	<meta name="description" content="Cosmik Bike Festival 2025 — 1ère édition, 30-31 mai et 1er juin 2025, Zonneklopper, Forest, Bruxelles.">
 	<meta name="theme-color" content="#FFFF00"/>
 	<link rel="icon" type="image/x-icon" href="../static/images/logo.jpg">
-	<link rel="stylesheet" href="static/css/main.css">
+	<link rel="stylesheet" href="../static/css/main.css">
 	<style>
+		/* ── Palette 2025: nuit + orange brique + bleu marine + jaune ── */
+		:root {
+			--c25-night:   #111318;
+			--c25-navy:    #1c2744;
+			--c25-orange:  #e85d20;
+			--c25-yellow:  #FFFF00;
+			--c25-cream:   #f5f0e8;
+			--c25-ink:     #1c1c1c;
+		}
+
+		/* Override main.css nav if it persists on subpages */
+		nav { display: none !important; }
+
+		body {
+			background: var(--c25-night);
+			color: var(--c25-cream);
+			margin: 0;
+		}
+
 		.ticker-top {
 			position: fixed;
 			top: 0;
 			left: 0;
 			width: 100%;
 			z-index: 200;
-			background: #111;
-			color: #FFFF00;
+			background: var(--c25-night);
+			color: var(--c25-yellow);
 			font-size: 0.82rem;
 			font-weight: 700;
 			letter-spacing: 0.05em;
-			border-bottom: 2px solid #FFFF00;
+			border-bottom: 2px solid var(--c25-orange);
 			height: 2rem;
 			display: flex;
 			align-items: center;
@@ -29,16 +48,21 @@
 		body { padding-top: 2rem; padding-bottom: 1rem; }
 
 		.cosmik25-hero {
-			background: #111;
-			color: #FFFF00;
+			background: var(--c25-navy);
+			color: var(--c25-yellow);
 			text-align: center;
 			padding: 3rem 1.5rem 2rem;
+			border-bottom: 3px solid var(--c25-orange);
 		}
-		.cosmik25-hero h1 { font-size: clamp(1.6rem, 5vw, 3rem); letter-spacing: -0.01em; margin: 0 0 0.4rem; }
+		.cosmik25-hero h1 {
+			font-size: clamp(1.6rem, 5vw, 3rem);
+			letter-spacing: -0.01em;
+			margin: 0 0 0.4rem;
+		}
 		.cosmik25-hero .edition-tag {
 			display: inline-block;
-			background: #FFFF00;
-			color: #111;
+			background: var(--c25-orange);
+			color: #fff;
 			font-size: 0.75rem;
 			font-weight: 800;
 			letter-spacing: 0.1em;
@@ -51,7 +75,8 @@
 
 		.cosmik25-gallery-wrap {
 			padding: 1.5rem 0;
-			background: #1a1a1a;
+			background: #0d0f14;
+			border-bottom: 3px solid var(--c25-navy);
 		}
 		.cosmik25-slide-outer {
 			display: flex;
@@ -77,8 +102,8 @@
 			border-radius: 2px;
 		}
 		.slide-btn {
-			background: #FFFF00;
-			color: #111;
+			background: var(--c25-orange);
+			color: #fff;
 			border: none;
 			width: 2.2rem;
 			height: 2.2rem;
@@ -86,29 +111,63 @@
 			font-size: 1rem;
 			cursor: pointer;
 			flex-shrink: 0;
+			transition: background 0.15s;
 		}
+		.slide-btn:hover { background: var(--c25-yellow); color: var(--c25-ink); }
 
+		/* ── Programme section: navy background, not white ── */
 		.cosmik25-lineup {
 			max-width: 760px;
 			margin: 0 auto;
 			padding: 2.5rem 1.5rem;
+			background: var(--c25-navy);
+			color: var(--c25-cream);
 		}
-		.cosmik25-lineup h2 { font-size: 1.3rem; border-bottom: 2px solid #FFFF00; padding-bottom: 0.3rem; margin-top: 2rem; }
-		.cosmik25-lineup h4 { font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; margin: 1.5rem 0 0.5rem; color: #555; }
+		.cosmik25-lineup h2 {
+			font-size: 1.3rem;
+			border-bottom: 2px solid var(--c25-orange);
+			padding-bottom: 0.3rem;
+			margin-top: 2rem;
+			color: var(--c25-yellow);
+		}
+		.cosmik25-lineup h4 {
+			font-size: 0.85rem;
+			letter-spacing: 0.07em;
+			text-transform: uppercase;
+			margin: 1.5rem 0 0.5rem;
+			color: var(--c25-orange);
+			font-weight: 800;
+		}
 		.cosmik25-lineup ul { padding-left: 1.2rem; }
-		.cosmik25-lineup ul li { margin-bottom: 0.35rem; line-height: 1.5; }
+		.cosmik25-lineup ul li {
+			margin-bottom: 0.35rem;
+			line-height: 1.6;
+			color: var(--c25-cream);
+		}
+		.cosmik25-lineup p { color: var(--c25-cream); }
 
 		.back-link {
 			display: inline-block;
 			margin: 1.5rem 1.5rem 0;
 			font-size: 0.8rem;
 			font-weight: 700;
-			color: #111;
+			color: var(--c25-yellow);
 			text-decoration: none;
-			border-bottom: 2px solid #FFFF00;
+			border-bottom: 2px solid var(--c25-orange);
 			padding-bottom: 1px;
 		}
-		.back-link:hover { border-color: #111; }
+		.back-link:hover { color: #fff; border-color: #fff; }
+
+		footer { background: var(--c25-night); }
+		footer .bulle {
+			background: transparent !important;
+			color: var(--c25-yellow) !important;
+			border-color: var(--c25-orange) !important;
+		}
+		footer .bulle:hover {
+			background: var(--c25-orange) !important;
+			color: #fff !important;
+		}
 	</style>
 </head>
 <body>

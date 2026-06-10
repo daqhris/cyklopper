@@ -126,7 +126,7 @@
 		.opensource-note {
 			text-align: center;
 			font-size: 0.72rem;
-			color: darkblue;
+			color: #555;
 			padding: 0.6rem 1rem 1rem;
 		}
 		.opensource-note a { color: #111; }
@@ -134,6 +134,9 @@
 		/* ── i18n: hide non-active language strings ── */
 		[data-lang] { display: none; }
 		[data-lang].lang-active { display: inline; }
+
+		/* ── Kill the original nav entirely at all breakpoints ── */
+		nav { display: none !important; }
 	</style>
 </head>
 <body>
@@ -147,15 +150,7 @@
 		</marquee>
 	</div>
 
-	<nav>
-		<ul>
-			<li><a href="#part1"><span data-lang="fr" class="lang-active">Présentation</span><span data-lang="nl">Voorstelling</span><span data-lang="en">About</span></a></li>
-			<li><a href="#part2"><span data-lang="fr" class="lang-active">Lieu et Horaire</span><span data-lang="nl">Adres &amp; Uren</span><span data-lang="en">Location &amp; Hours</span></a></li>
-			<li><a href="#part3"><span data-lang="fr" class="lang-active">Équipe + Bénévoles</span><span data-lang="nl">Team &amp; Vrijwilligers</span><span data-lang="en">Team &amp; Volunteers</span></a></li>
-			<li><a href="#galery"><span data-lang="fr" class="lang-active">Cosmik Bike Festival</span><span data-lang="nl">Cosmik Bike Festival</span><span data-lang="en">Cosmik Bike Festival</span></a></li>
-			<li><a href="#part-end">Contact</a></li>
-		</ul>
-	</nav>
+	<!-- nav element removed: was causing a ghost overlay on small screens via main.css fixed positioning -->
 
 	<main>
 		<section id="part-top">
@@ -274,9 +269,9 @@
 
 		<!-- Open source + last update note -->
 		<p class="opensource-note" id="opensource-note">
-			<span data-lang="fr" class="lang-active">Site libre et open source : <a href="https://github.com/daqhris/cyklopper" target="_blank" rel="noopener">github.com/daqhris/cyklopper</a> | dernière mise à jour : <span id="last-modified">—</span></span>
-			<span data-lang="nl">Vrije open-source website: <a href="https://github.com/daqhris/cyklopper" target="_blank" rel="noopener">github.com/daqhris/cyklopper</a> | laatste update: <span class="last-modified-nl">—</span></span>
-			<span data-lang="en">Free open-source site: <a href="https://github.com/daqhris/cyklopper" target="_blank" rel="noopener">github.com/daqhris/cyklopper</a> | last updated: <span class="last-modified-en">—</span></span>
+			<span data-lang="fr" class="lang-active">Site libre et open source — <a href="https://github.com/daqhris/cyklopper" target="_blank" rel="noopener">github.com/daqhris/cyklopper</a> — dernière mise à jour : <span id="last-modified">—</span></span>
+			<span data-lang="nl">Vrije open-source website — <a href="https://github.com/daqhris/cyklopper" target="_blank" rel="noopener">github.com/daqhris/cyklopper</a> — laatste update: <span class="last-modified-nl">—</span></span>
+			<span data-lang="en">Free open-source site — <a href="https://github.com/daqhris/cyklopper" target="_blank" rel="noopener">github.com/daqhris/cyklopper</a> — last updated: <span class="last-modified-en">—</span></span>
 		</p>
 	</main>
 
