@@ -7,4 +7,17 @@
     <priority>1.0</priority>
   </url>
 
+  <url>
+    <loc>https://cyklopper.be/cosmik-2025/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://cyklopper.be/cosmik-2026/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+
 </urlset>
