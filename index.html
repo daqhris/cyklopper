@@ -3,158 +3,377 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Cyklopper | Atelier vélo participatif Bruxelles</title>
-    <meta name="description" content="Cyklopper — atelier participatif de réparation vélo situé à Forest, Bruxelles. Ouvert tous les jeudis de 16h à 20h. 2ème édition du Cosmik Bike Festival: 4 et 5 Juillet 2026.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Cyklopper — atelier participatif de réparation vélo situé à Forest, Bruxelles. Ouvert tous les jeudis de 16h à 20h. 2ème édition du Cosmik Bike Festival: 4 et 5 Juillet 2026.">
 	<meta content="Cyklopper, Zonneklopper, Atelier vélo participatif, Cosmik Bike Festival, Forest, Bruxelles" name="keywords">
-    <meta content="Cyklopper: un atelier vélo participatif au Sud de Bruxelles" property="og:title">
-    <meta content="fr_BE" property="og:locale">
-    <meta content="website" property="og:type">
-    <meta content="https://cyklopper.be" property="og:url">
-    <meta content="Cyklopper est un atelier de réparation vélo participatif visant à promouvoir l'autonomie de chacun.e par le partage de connaissances et la réutilisation de matériel de récupération." property="og:description">
-    <meta content="/images-bd/presentation.svg" property="og:image">
+	<meta content="Cyklopper: un atelier vélo participatif au Sud de Bruxelles" property="og:title">
+	<meta content="fr_BE" property="og:locale">
+	<meta content="website" property="og:type">
+	<meta content="https://cyklopper.be" property="og:url">
+	<meta content="Cyklopper est un atelier de réparation vélo participatif visant à promouvoir l'autonomie de chacun.e par le partage de connaissances et la réutilisation de matériel de récupération." property="og:description">
+	<meta content="/images-bd/presentation.svg" property="og:image">
 	<meta name="theme-color" content="#FFFF00"/>
 	<link rel="icon" type="image/x-icon" href="static/images/logo.jpg">
 	<link rel="stylesheet" href="static/css/main.css">
+	<style>
+		/* ── Marquee ticker at top ── */
+		.ticker-top {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			z-index: 200;
+			background: #FFFF00;
+			color: #111;
+			font-family: inherit;
+			font-size: 0.85rem;
+			font-weight: 700;
+			letter-spacing: 0.05em;
+			border-bottom: 2px solid #111;
+			overflow: hidden;
+			height: 2rem;
+			display: flex;
+			align-items: center;
+		}
+		.ticker-top marquee { width: 100%; }
+
+		/* ── Bottom bar ── */
+		.bottom-bar {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			z-index: 200;
+			background: #111;
+			color: #FFFF00;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 0 1rem;
+			height: 3.2rem;
+			border-top: 2px solid #FFFF00;
+			gap: 0.5rem;
+			box-sizing: border-box;
+		}
+		.bottom-bar__festivals {
+			display: flex;
+			gap: 0.5rem;
+			flex-shrink: 0;
+		}
+		.bottom-bar a.pill,
+		.bottom-bar button.pill {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.3em;
+			background: #FFFF00;
+			color: #111;
+			border: none;
+			border-radius: 2px;
+			padding: 0.25rem 0.65rem;
+			font-size: 0.72rem;
+			font-weight: 800;
+			letter-spacing: 0.04em;
+			text-decoration: none;
+			cursor: pointer;
+			white-space: nowrap;
+			line-height: 1.4;
+			transition: background 0.15s, color 0.15s;
+		}
+		.bottom-bar a.pill:hover,
+		.bottom-bar button.pill:hover {
+			background: #fff;
+			color: #111;
+		}
+		.bottom-bar a.pill.upcoming {
+			background: #fff500;
+			box-shadow: 0 0 0 1.5px #FFFF00;
+		}
+		.bottom-bar__countdown {
+			flex: 1;
+			text-align: center;
+			font-size: 0.72rem;
+			font-weight: 700;
+			letter-spacing: 0.04em;
+			color: #FFFF00;
+			white-space: nowrap;
+		}
+		#countdown-display {
+			font-variant-numeric: tabular-nums;
+			font-size: 0.92rem;
+		}
+		.bottom-bar__lang {
+			display: flex;
+			gap: 0.3rem;
+			flex-shrink: 0;
+		}
+		.bottom-bar__lang button.pill {
+			background: transparent;
+			color: #FFFF00;
+			border: 1.5px solid #FFFF00;
+			font-size: 0.68rem;
+			padding: 0.2rem 0.45rem;
+		}
+		.bottom-bar__lang button.pill.active,
+		.bottom-bar__lang button.pill:hover {
+			background: #FFFF00;
+			color: #111;
+		}
+
+		/* Push body content away from fixed bars */
+		body { padding-top: 2rem; padding-bottom: 3.5rem; }
+
+		/* ── Open-source footer note ── */
+		.opensource-note {
+			text-align: center;
+			font-size: 0.72rem;
+			color: #555;
+			padding: 0.6rem 1rem 1rem;
+		}
+		.opensource-note a { color: #111; }
+
+		/* ── i18n: hide non-active language strings ── */
+		[data-lang] { display: none; }
+		[data-lang].lang-active { display: inline; }
+	</style>
 </head>
-<body>		
-		<nav>
+<body>
+
+	<!-- ── TOP: scrolling ticker (was footer) ── -->
+	<div class="ticker-top" aria-label="Annonce festival">
+		<marquee behavior="" direction="" scrollamount="8" aria-hidden="true">
+			<span data-lang="fr" class="lang-active">COSMIK BIKE FESTIVAL MONDIAL DU VÉLO DE FOREST &nbsp;·&nbsp; 04 et 05 juillet 2026 &nbsp;·&nbsp; 2<sup>è</sup> édition à Zonneklopper &nbsp;·&nbsp; 23 avenue de la Verrerie, Forest, Bruxelles &nbsp;·&nbsp;</span>
+			<span data-lang="nl">COSMIK BIKE FESTIVAL WERELDFIETSFEEST VAN FOREST &nbsp;·&nbsp; 4 en 5 juli 2026 &nbsp;·&nbsp; 2<sup>e</sup> editie in Zonneklopper &nbsp;·&nbsp; Glazeniersstraat 23, Vorst, Brussel &nbsp;·&nbsp;</span>
+			<span data-lang="en">COSMIK BIKE FESTIVAL WORLD CYCLING FESTIVAL OF FOREST &nbsp;·&nbsp; July 4–5, 2026 &nbsp;·&nbsp; 2<sup>nd</sup> edition at Zonneklopper &nbsp;·&nbsp; 23 avenue de la Verrerie, Forest, Brussels &nbsp;·&nbsp;</span>
+		</marquee>
+	</div>
+
+	<nav>
 		<ul>
-			<li>
-				<a href="#part1">
-					Présentation
-				</a>
-			</li>
-			<li>
-				<a href="#part2">
-					Lieu et Horaire
-				</a>
-			</li>
-			<li>
-				<a href="#part3">
-					Équipe + Bénévoles
-				</a>
-			</li>
-			<li>
-				<a  href="#galery">
-					Cosmik Bike Festival
-				</a>
-			</li>
-			<li>
-				<a  href="#part-end">
-					Contact
-				</a>
-			</li>
+			<li><a href="#part1"><span data-lang="fr" class="lang-active">Présentation</span><span data-lang="nl">Voorstelling</span><span data-lang="en">About</span></a></li>
+			<li><a href="#part2"><span data-lang="fr" class="lang-active">Lieu et Horaire</span><span data-lang="nl">Adres &amp; Uren</span><span data-lang="en">Location &amp; Hours</span></a></li>
+			<li><a href="#part3"><span data-lang="fr" class="lang-active">Équipe + Bénévoles</span><span data-lang="nl">Team &amp; Vrijwilligers</span><span data-lang="en">Team &amp; Volunteers</span></a></li>
+			<li><a href="#galery"><span data-lang="fr" class="lang-active">Cosmik Bike Festival</span><span data-lang="nl">Cosmik Bike Festival</span><span data-lang="en">Cosmik Bike Festival</span></a></li>
+			<li><a href="#part-end">Contact</a></li>
 		</ul>
-		</nav>
+	</nav>
 
 	<main>
-			<section id="part-top">
-				<h1>
-					Atelier vélo participatif Cyklopper
-				</h1>
-			</section>
+		<section id="part-top">
+			<h1>
+				<span data-lang="fr" class="lang-active">Atelier vélo participatif Cyklopper</span>
+				<span data-lang="nl">Participatieve fietswerkplaats Cyklopper</span>
+				<span data-lang="en">Cyklopper Participatory Bike Workshop</span>
+			</h1>
+		</section>
 
-			<section id="part1">
+		<section id="part1">
 			<div class="content">
-				<p>Cyklopper est un atelier de réparation vélo participatif visant à promouvoir l'autonomie de chacun.e par le partage de connaissances et la réutilisation de matériel de récupération.</p><br>
-				<p>L'atelier organise un festival annuel proposant des spectacles époustouflants, des jeux collectifs, des projections de films et des surprises festives liés aux vélos.</p>
+				<p>
+					<span data-lang="fr" class="lang-active">Cyklopper est un atelier de réparation vélo participatif visant à promouvoir l'autonomie de chacun.e par le partage de connaissances et la réutilisation de matériel de récupération.</span>
+					<span data-lang="nl">Cyklopper is een participatieve fietsherstelwerkplaats die de autonomie van iedereen bevordert door kennisdeling en hergebruik van recuperatiemateriaal.</span>
+					<span data-lang="en">Cyklopper is a participatory bike repair workshop promoting self-reliance through knowledge sharing and the reuse of recovered materials.</span>
+				</p><br>
+				<p>
+					<span data-lang="fr" class="lang-active">L'atelier organise un festival annuel proposant des spectacles époustouflants, des jeux collectifs, des projections de films et des surprises festives liés aux vélos.</span>
+					<span data-lang="nl">De werkplaats organiseert een jaarlijks festival met adembenemende voorstellingen, collectieve spelen, filmvertoningen en feestelijke verrassingen rond fietsen.</span>
+					<span data-lang="en">The workshop organises an annual festival featuring breathtaking performances, collective games, film screenings and festive surprises around bicycles.</span>
+				</p>
 			</div>
 			<div class="image">
-				<img src="images-bd/presentation.svg" />
+				<img src="images-bd/presentation.svg" alt="Illustration atelier vélo" />
 			</div>
-			</section>
+		</section>
 
-			<section id="galery">
-				<div class="gallery-wrapper">
-					<button class="gallery-btn gallery-btn--left" aria-label="Défiler à gauche" onclick="scrollGallery(-1)">&#8592;</button>
-					<div class="slide" id="gallery-slide">
-
-						<img src="cosmik-2025/photos/20250530_212429.jpg" alt="">
-					
-						<img src="cosmik-2025/photos/20250531_142231.jpg" alt="">
-			
-						<img src="cosmik-2025/photos/20250531_145113.jpg" alt="">
-
-						<img src="cosmik-2025/photos/20250531_151805.jpg" alt="">
-					
-						<img src="cosmik-2025/photos/20250531_155640.jpg" alt="">
-			
-						<img src="cosmik-2025/photos/20250531_174802.jpg" alt="">
-
-						<img src="cosmik-2025/photos/20250531_180642.jpg" alt="">
-					
-						<img src="cosmik-2025/photos/20250601_160313.jpg" alt="">
-			
-						<img src="cosmik-2025/photos/20250601_160607.jpg" alt="">
-
-						<img src="cosmik-2025/photos/20250601_164053.jpg" alt="">
-			
-						<img src="cosmik-2025/photos/20250601_164923.jpg" alt="">
-
-						<img src="cosmik-2025/photos/20250601_170500.jpg" alt="">
-					
-						<img src="cosmik-2025/photos/20250601_171122.jpg" alt="">
-			
-						<img src="cosmik-2025/photos/20250601_171421.jpg" alt="">
-
-						<img src="cosmik-2025/photos/20250601_175249.jpg" alt="">
-
-						<img src="cosmik-2025/photos/20250601_175407.jpg" alt="">
-					
-						<img src="cosmik-2025/photos/20250601_171122.jpg" alt="">
-			
-						<img src="cosmik-2025/photos/PXL_20250601_150651703.jpg" alt="">
-					
-				</div><!-- /.slide -->
-					<button class="gallery-btn gallery-btn--right" aria-label="Défiler à droite" onclick="scrollGallery(1)">&#8594;</button>
-				</div><!-- /.gallery-wrapper -->
-					<div class="" style="margin: 60px;">
-					<p>Vous avez un projet vélo, fou, fabuleux, joyeux? Venez partager votre enthousiasme et participer au COSMIK BIKE FESTIVAL MONDIAL DU VÉLO DE FOREST le 04 et 05 juillet 2026 au 23 avenue de la verrerie.</p><br>
-					<p>L'idée du festival est assez simple: profiter de l'espace de Zonneklopper traversant l'îlot situé entre l'avenue de la verrerie et la chaussée de Neerstalle à Forest pour organiser la rencontre de toutes les passions à vélo à travers des projets non commerciaux et festifs.</p><br>
-					<p>À disposition: 1000m² extérieurs, 1000m² intérieur, bar, salle de concert, de projection, atelier vélo, avenue de la verrerie.</p>
+		<section id="galery">
+			<div class="gallery-wrapper">
+				<button class="gallery-btn gallery-btn--left" aria-label="Défiler à gauche" onclick="scrollGallery(-1)">&#8592;</button>
+				<div class="slide" id="gallery-slide">
+					<img src="cosmik-2025/photos/20250530_212429.jpg" alt="">
+					<img src="cosmik-2025/photos/20250531_142231.jpg" alt="">
+					<img src="cosmik-2025/photos/20250531_145113.jpg" alt="">
+					<img src="cosmik-2025/photos/20250531_151805.jpg" alt="">
+					<img src="cosmik-2025/photos/20250531_155640.jpg" alt="">
+					<img src="cosmik-2025/photos/20250531_174802.jpg" alt="">
+					<img src="cosmik-2025/photos/20250531_180642.jpg" alt="">
+					<img src="cosmik-2025/photos/20250601_160313.jpg" alt="">
+					<img src="cosmik-2025/photos/20250601_160607.jpg" alt="">
+					<img src="cosmik-2025/photos/20250601_164053.jpg" alt="">
+					<img src="cosmik-2025/photos/20250601_164923.jpg" alt="">
+					<img src="cosmik-2025/photos/20250601_170500.jpg" alt="">
+					<img src="cosmik-2025/photos/20250601_171122.jpg" alt="">
+					<img src="cosmik-2025/photos/20250601_171421.jpg" alt="">
+					<img src="cosmik-2025/photos/20250601_175249.jpg" alt="">
+					<img src="cosmik-2025/photos/20250601_175407.jpg" alt="">
+					<img src="cosmik-2025/photos/PXL_20250601_150651703.jpg" alt="">
 				</div>
-			</section>
-		
-			<section id="part2">
-				<div class="content">
-					<h2>L’atelier est ouvert tous les jeudis de 16h à 20h - Avenue de la Verrerie 23, 1190 Forest, Belgique.</h2>
-					<p>Les pièces neuves sont vendues à un prix démocratique et les pièces d’occasion à prix libre (ce que tu veux, ce que tu peux).</p>
-				</div>
-				<div class="image">
-					<img src="images-bd/pneu.svg" />
-				</div>
-			</section>
-		
-			<section id="part3">
-				<div class="image"><img src="images-bd/reparation.svg" /></div>
-				<div class="content">
-				<p>Notre lieu de rencontre facilite le tissage des liens dans le quartier et aide à franchir le pas vers la vélonomie.</p><br>
-				<p>L'équipe est composée de Denis et Marie qui sont entourés par des bénévoles: Romain, Yohan, Chris-Armel, Martin, Camille, ...</p><br>
-				<p>Une fête spectaculaire de cyclistes est en préparation pour une 2è édition. Rejoignez-nous: <a href="https://lite.framacalc.org/3nnifnwayr-aliy" class="" target="_blank">Inscription de Bénévoles</a>.</p>
-				</div>
-			</section>
+				<button class="gallery-btn gallery-btn--right" aria-label="Défiler à droite" onclick="scrollGallery(1)">&#8594;</button>
+			</div>
+			<div class="" style="margin: 60px;">
+				<p>
+					<span data-lang="fr" class="lang-active">Vous avez un projet vélo, fou, fabuleux, joyeux? Venez partager votre enthousiasme et participer au COSMIK BIKE FESTIVAL MONDIAL DU VÉLO DE FOREST le 04 et 05 juillet 2026 au 23 avenue de la verrerie.</span>
+					<span data-lang="nl">Heb je een gek, fabuleus of vrolijk fietsproject? Kom je enthousiasme delen op het COSMIK BIKE FESTIVAL WERELDFIETSFEEST VAN FOREST op 4 en 5 juli 2026, Glazeniersstraat 23.</span>
+					<span data-lang="en">Got a wild, fabulous, joyful bike project? Come share your enthusiasm at the COSMIK BIKE FESTIVAL WORLD CYCLING FESTIVAL OF FOREST, July 4–5 2026, 23 avenue de la verrerie.</span>
+				</p><br>
+				<p>
+					<span data-lang="fr" class="lang-active">L'idée du festival est assez simple: profiter de l'espace de Zonneklopper traversant l'îlot situé entre l'avenue de la verrerie et la chaussée de Neerstalle à Forest pour organiser la rencontre de toutes les passions à vélo à travers des projets non commerciaux et festifs.</span>
+					<span data-lang="nl">Het idee van het festival is eenvoudig: de Zonneklopper-ruimte, gelegen tussen de Glazeniersstraat en de Neerstalsesteenweg in Vorst, benutten voor een ontmoeting van alle fietspassies via niet-commerciële en feestelijke projecten.</span>
+					<span data-lang="en">The festival's idea is simple: use Zonneklopper's space — cutting through the block between avenue de la verrerie and chaussée de Neerstalle in Forest — to gather all cycling passions through non-commercial, festive projects.</span>
+				</p><br>
+				<p>
+					<span data-lang="fr" class="lang-active">À disposition: 1000m² extérieurs, 1000m² intérieur, bar, salle de concert, de projection, atelier vélo, avenue de la verrerie.</span>
+					<span data-lang="nl">Beschikbaar: 1000m² buiten, 1000m² binnen, bar, concertzaal, projectiezaal, fietswerkplaats, Glazeniersstraat.</span>
+					<span data-lang="en">Available: 1000m² outdoors, 1000m² indoors, bar, concert hall, screening room, bike workshop, avenue de la verrerie.</span>
+				</p>
+			</div>
+		</section>
 
-			<section id="part-end">
-				<a href="https://www.facebook.com/atelierCyklopper/" class="bulle" target="_blank"> Facebook </a>
-				<a href="https://www.instagram.com/cyklopper/?__d=1%2F" class="bulle" target="_blank"> Instagram </a>
-				<a href="mailto:ateliercyklopper@protonmail.com" class="bulle" target="_blank"> Contact </a>
-			</section>
+		<section id="part2">
+			<div class="content">
+				<h2>
+					<span data-lang="fr" class="lang-active">L'atelier est ouvert tous les jeudis de 16h à 20h — Avenue de la Verrerie 23, 1190 Forest, Belgique.</span>
+					<span data-lang="nl">De werkplaats is elke donderdag open van 16u tot 20u — Glazeniersstraat 23, 1190 Vorst, België.</span>
+					<span data-lang="en">The workshop is open every Thursday from 4 to 8 pm — 23 Avenue de la Verrerie, 1190 Forest, Belgium.</span>
+				</h2>
+				<p>
+					<span data-lang="fr" class="lang-active">Les pièces neuves sont vendues à un prix démocratique et les pièces d'occasion à prix libre (ce que tu veux, ce que tu peux).</span>
+					<span data-lang="nl">Nieuwe onderdelen worden verkocht aan een democratische prijs en tweedehands onderdelen aan een vrije prijs (wat je wil, wat je kan).</span>
+					<span data-lang="en">New parts are sold at accessible prices and second-hand parts at a free price (whatever you want, whatever you can).</span>
+				</p>
+			</div>
+			<div class="image">
+				<img src="images-bd/pneu.svg" alt="Illustration pneu vélo" />
+			</div>
+		</section>
+
+		<section id="part3">
+			<div class="image"><img src="images-bd/reparation.svg" alt="Illustration réparation vélo" /></div>
+			<div class="content">
+				<p>
+					<span data-lang="fr" class="lang-active">Notre lieu de rencontre facilite le tissage des liens dans le quartier et aide à franchir le pas vers la vélonomie.</span>
+					<span data-lang="nl">Onze ontmoetingsplaats vergemakkelijkt het leggen van buurtbanden en helpt de stap te zetten naar fietsautonomie.</span>
+					<span data-lang="en">Our meeting place fosters neighbourhood connections and helps people take the step towards cycling autonomy.</span>
+				</p><br>
+				<p>
+					<span data-lang="fr" class="lang-active">L'équipe est composée de Denis et Marie qui sont entourés par des bénévoles: Romain, Yohan, Chris-Armel, Martin, Camille, …</span>
+					<span data-lang="nl">Het team bestaat uit Denis en Marie, omringd door vrijwilligers: Romain, Yohan, Chris-Armel, Martin, Camille, …</span>
+					<span data-lang="en">The team is made up of Denis and Marie, surrounded by volunteers: Romain, Yohan, Chris-Armel, Martin, Camille, …</span>
+				</p><br>
+				<p>
+					<span data-lang="fr" class="lang-active">Une fête spectaculaire de cyclistes est en préparation pour une 2è édition. Rejoignez-nous: <a href="https://lite.framacalc.org/3nnifnwayr-aliy" target="_blank">Inscription de Bénévoles</a>.</span>
+					<span data-lang="nl">Een spectaculair fietsfeest is in voorbereiding voor een 2e editie. Doe mee: <a href="https://lite.framacalc.org/3nnifnwayr-aliy" target="_blank">Vrijwilligersregistratie</a>.</span>
+					<span data-lang="en">A spectacular cycling celebration is being prepared for a 2nd edition. Join us: <a href="https://lite.framacalc.org/3nnifnwayr-aliy" target="_blank">Volunteer registration</a>.</span>
+				</p>
+			</div>
+		</section>
+
+		<section id="part-end">
+			<a href="https://www.facebook.com/atelierCyklopper/" class="bulle" target="_blank"> Facebook </a>
+			<a href="https://www.instagram.com/cyklopper/?__d=1%2F" class="bulle" target="_blank"> Instagram </a>
+			<a href="mailto:ateliercyklopper@protonmail.com" class="bulle" target="_blank"> Contact </a>
+		</section>
+
+		<!-- Open source + last update note -->
+		<p class="opensource-note" id="opensource-note">
+			<span data-lang="fr" class="lang-active">Site libre et open source — <a href="https://github.com/daqhris/cyklopper" target="_blank" rel="noopener">github.com/daqhris/cyklopper</a> — dernière mise à jour : <span id="last-modified">—</span></span>
+			<span data-lang="nl">Vrije open-source website — <a href="https://github.com/daqhris/cyklopper" target="_blank" rel="noopener">github.com/daqhris/cyklopper</a> — laatste update: <span class="last-modified-nl">—</span></span>
+			<span data-lang="en">Free open-source site — <a href="https://github.com/daqhris/cyklopper" target="_blank" rel="noopener">github.com/daqhris/cyklopper</a> — last updated: <span class="last-modified-en">—</span></span>
+		</p>
 	</main>
 
-	<footer>
-		<marquee behavior="" direction="" scrollamount="10">
-		<ul>
-			<li>
-				COSMIK BIKE FESTIVAL MONDIAL DU VÉLO DE FOREST · 04 et 05 juillet 2026 · 2<sup>è</sup> édition à Zonneklopper
-			</li>
-		</ul>
-		</marquee>
-	</footer>
+	<!-- ── BOTTOM: fixed bar (was nav, now actions) ── -->
+	<div class="bottom-bar" role="navigation" aria-label="Actions rapides">
+		<div class="bottom-bar__festivals">
+			<a href="cosmik-2025/" class="pill" aria-label="Cosmik 2025 — édition passée">🚲 2025</a>
+			<a href="cosmik-2026/" class="pill upcoming" aria-label="Cosmik 2026 — prochaine édition">✨ 2026</a>
+		</div>
+
+		<div class="bottom-bar__countdown" aria-live="polite">
+			<span id="countdown-label">
+				<span data-lang="fr" class="lang-active">Festival dans </span>
+				<span data-lang="nl">Festival over </span>
+				<span data-lang="en">Festival in </span>
+			</span>
+			<span id="countdown-display">…</span>
+		</div>
+
+		<div class="bottom-bar__lang" aria-label="Choisir la langue">
+			<button class="pill active" id="lang-fr" onclick="setLang('fr')" aria-pressed="true">FR</button>
+			<button class="pill" id="lang-nl" onclick="setLang('nl')" aria-pressed="false">NL</button>
+			<button class="pill" id="lang-en" onclick="setLang('en')" aria-pressed="false">EN</button>
+		</div>
+	</div>
+
 	<script>
+		/* ── Gallery scroll ── */
 		function scrollGallery(direction) {
 			const slide = document.getElementById('gallery-slide');
 			const scrollAmount = slide.clientWidth * 0.75;
 			slide.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
 		}
+
+		/* ── Language switch ── */
+		function setLang(lang) {
+			document.querySelectorAll('[data-lang]').forEach(el => {
+				el.classList.toggle('lang-active', el.dataset.lang === lang);
+			});
+			['fr','nl','en'].forEach(l => {
+				const btn = document.getElementById('lang-' + l);
+				if (btn) { btn.classList.toggle('active', l === lang); btn.setAttribute('aria-pressed', l === lang); }
+			});
+			localStorage.setItem('cyklopper-lang', lang);
+		}
+		// Restore persisted language
+		const savedLang = localStorage.getItem('cyklopper-lang');
+		if (savedLang && ['fr','nl','en'].includes(savedLang)) setLang(savedLang);
+
+		/* ── Countdown to Cosmik 2026 (4 July 2026, 14:00 CEST = UTC+2) ── */
+		const FESTIVAL_START = new Date('2026-07-04T12:00:00Z'); // 14h Brussels = 12h UTC
+		const FESTIVAL_END   = new Date('2026-07-05T22:00:00Z'); // 5 July 24h
+
+		function updateCountdown() {
+			const now = new Date();
+			const display = document.getElementById('countdown-display');
+			const label = document.getElementById('countdown-label');
+			const lang = localStorage.getItem('cyklopper-lang') || 'fr';
+
+			if (now >= FESTIVAL_END) {
+				display.textContent = '';
+				const msgs = { fr: 'Festival terminé — à l\'an prochain !', nl: 'Festival voorbij — tot volgend jaar!', en: 'Festival over — see you next year!' };
+				if (label) label.textContent = msgs[lang] || msgs.fr;
+				return;
+			}
+			if (now >= FESTIVAL_START) {
+				display.textContent = '';
+				const msgs = { fr: '🎉 C\'EST MAINTENANT — VENEZ !', nl: '🎉 HET IS NU — KOM ERBIJ!', en: '🎉 HAPPENING NOW — JOIN US!' };
+				if (label) label.textContent = msgs[lang] || msgs.fr;
+				return;
+			}
+
+			const diff = FESTIVAL_START - now;
+			const d = Math.floor(diff / 86400000);
+			const h = Math.floor((diff % 86400000) / 3600000);
+			const m = Math.floor((diff % 3600000) / 60000);
+			const s = Math.floor((diff % 60000) / 1000);
+
+			const pad = n => String(n).padStart(2, '0');
+			const labels = {
+				fr: { pre: 'Festival dans ', d: 'j', h: 'h', m: 'm', s: 's' },
+				nl: { pre: 'Festival over ', d: 'd', h: 'u', m: 'm', s: 's' },
+				en: { pre: 'Festival in ',   d: 'd', h: 'h', m: 'm', s: 's' },
+			};
+			const L = labels[lang] || labels.fr;
+			if (label) { label.querySelectorAll('[data-lang]').forEach(el => el.classList.toggle('lang-active', el.dataset.lang === lang)); }
+			display.textContent = `${d}${L.d} ${pad(h)}${L.h} ${pad(m)}${L.m} ${pad(s)}${L.s}`;
+		}
+		updateCountdown();
+		setInterval(updateCountdown, 1000);
+
+		/* ── Last modified timestamp ── */
+		const lm = document.lastModified;
+		const lmDate = new Date(lm);
+		const formatted = lmDate.toLocaleDateString('fr-BE', { year:'numeric', month:'long', day:'numeric' });
+		document.getElementById('last-modified').textContent = formatted;
+		document.querySelectorAll('.last-modified-nl, .last-modified-en').forEach(el => el.textContent = formatted);
 	</script>
 </body>
 </html>

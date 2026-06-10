@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Cosmik Bike Festival 2025 — 1ère édition — Cyklopper</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Cosmik Bike Festival 2025 — 1ère édition, 30-31 mai et 1er juin 2025, Zonneklopper, Forest, Bruxelles.">
+	<meta name="theme-color" content="#FFFF00"/>
+	<link rel="icon" type="image/x-icon" href="../static/images/logo.jpg">
+	<link rel="stylesheet" href="../static/css/main.css">
+	<style>
+		.ticker-top {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			z-index: 200;
+			background: #111;
+			color: #FFFF00;
+			font-size: 0.82rem;
+			font-weight: 700;
+			letter-spacing: 0.05em;
+			border-bottom: 2px solid #FFFF00;
+			height: 2rem;
+			display: flex;
+			align-items: center;
+		}
+		.ticker-top marquee { width: 100%; }
+		body { padding-top: 2rem; padding-bottom: 1rem; }
+
+		.cosmik25-hero {
+			background: #111;
+			color: #FFFF00;
+			text-align: center;
+			padding: 3rem 1.5rem 2rem;
+		}
+		.cosmik25-hero h1 { font-size: clamp(1.6rem, 5vw, 3rem); letter-spacing: -0.01em; margin: 0 0 0.4rem; }
+		.cosmik25-hero .edition-tag {
+			display: inline-block;
+			background: #FFFF00;
+			color: #111;
+			font-size: 0.75rem;
+			font-weight: 800;
+			letter-spacing: 0.1em;
+			padding: 0.15rem 0.6rem;
+			border-radius: 2px;
+			margin-bottom: 1rem;
+			text-transform: uppercase;
+		}
+		.cosmik25-hero .dates { font-size: 1.05rem; opacity: 0.85; }
+
+		.cosmik25-gallery-wrap {
+			padding: 1.5rem 0;
+			background: #1a1a1a;
+		}
+		.cosmik25-slide-outer {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			padding: 0 0.5rem;
+		}
+		.cosmik25-slide {
+			display: flex;
+			overflow-x: auto;
+			scroll-snap-type: x mandatory;
+			gap: 0.5rem;
+			flex: 1;
+			scrollbar-width: none;
+		}
+		.cosmik25-slide::-webkit-scrollbar { display: none; }
+		.cosmik25-slide img {
+			height: 240px;
+			width: auto;
+			flex-shrink: 0;
+			scroll-snap-align: start;
+			object-fit: cover;
+			border-radius: 2px;
+		}
+		.slide-btn {
+			background: #FFFF00;
+			color: #111;
+			border: none;
+			width: 2.2rem;
+			height: 2.2rem;
+			border-radius: 2px;
+			font-size: 1rem;
+			cursor: pointer;
+			flex-shrink: 0;
+		}
+
+		.cosmik25-lineup {
+			max-width: 760px;
+			margin: 0 auto;
+			padding: 2.5rem 1.5rem;
+		}
+		.cosmik25-lineup h2 { font-size: 1.3rem; border-bottom: 2px solid #FFFF00; padding-bottom: 0.3rem; margin-top: 2rem; }
+		.cosmik25-lineup h4 { font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; margin: 1.5rem 0 0.5rem; color: #555; }
+		.cosmik25-lineup ul { padding-left: 1.2rem; }
+		.cosmik25-lineup ul li { margin-bottom: 0.35rem; line-height: 1.5; }
+
+		.back-link {
+			display: inline-block;
+			margin: 1.5rem 1.5rem 0;
+			font-size: 0.8rem;
+			font-weight: 700;
+			color: #111;
+			text-decoration: none;
+			border-bottom: 2px solid #FFFF00;
+			padding-bottom: 1px;
+		}
+		.back-link:hover { border-color: #111; }
+	</style>
+</head>
+<body>
+
+	<div class="ticker-top">
+		<marquee scrollamount="7">COSMIK BIKE FESTIVAL 2025 — 1ÈRE ÉDITION &nbsp;·&nbsp; 30-31 MAI ET 1ER JUIN 2025 &nbsp;·&nbsp; ZONNEKLOPPER, FOREST, BRUXELLES &nbsp;·&nbsp;</marquee>
+	</div>
+
+	<div class="cosmik25-hero">
+		<span class="edition-tag">1ère édition</span>
+		<h1>Cosmik Bike Festival 2025</h1>
+		<p class="dates">30 &amp; 31 mai · 1<sup>er</sup> juin 2025<br>Zonneklopper, 23 avenue de la Verrerie, Forest</p>
+	</div>
+
+	<div class="cosmik25-gallery-wrap">
+		<div class="cosmik25-slide-outer">
+			<button class="slide-btn" onclick="scrollC25(-1)">&#8592;</button>
+			<div class="cosmik25-slide" id="c25-slide">
+				<img src="photos/20250530_212429.jpg" alt="Cosmik 2025">
+				<img src="photos/20250531_142231.jpg" alt="Cosmik 2025">
+				<img src="photos/20250531_145113.jpg" alt="Cosmik 2025">
+				<img src="photos/20250531_151805.jpg" alt="Cosmik 2025">
+				<img src="photos/20250531_155640.jpg" alt="Cosmik 2025">
+				<img src="photos/20250531_174802.jpg" alt="Cosmik 2025">
+				<img src="photos/20250531_180642.jpg" alt="Cosmik 2025">
+				<img src="photos/20250601_160313.jpg" alt="Cosmik 2025">
+				<img src="photos/20250601_160607.jpg" alt="Cosmik 2025">
+				<img src="photos/20250601_164053.jpg" alt="Cosmik 2025">
+				<img src="photos/20250601_164923.jpg" alt="Cosmik 2025">
+				<img src="photos/20250601_170500.jpg" alt="Cosmik 2025">
+				<img src="photos/20250601_171122.jpg" alt="Cosmik 2025">
+				<img src="photos/20250601_171421.jpg" alt="Cosmik 2025">
+				<img src="photos/20250601_175249.jpg" alt="Cosmik 2025">
+				<img src="photos/20250601_175407.jpg" alt="Cosmik 2025">
+				<img src="photos/PXL_20250601_150651703.jpg" alt="Cosmik 2025">
+			</div>
+			<button class="slide-btn" onclick="scrollC25(1)">&#8594;</button>
+		</div>
+	</div>
+
+	<main class="cosmik25-lineup">
+		<h2>Programme</h2>
+
+		<h4>Vendredi 30 mai — 20h30–23h30</h4>
+		<ul>
+			<li>20h30 — arrivée de la critical mass</li>
+			<li>21h — fanfare pelouse jazz band</li>
+			<li>Bar et petite restauration</li>
+		</ul>
+
+		<h4>Samedi 31 mai — 14h–22h</h4>
+		<ul>
+			<li>15h — Spectacle Mito</li>
+			<li>15h–17h30 — Atelier sérigraphie avec l'Atelier des Chardonnes</li>
+			<li>17h — Rencontre / débat avec Radio Panik</li>
+			<li>18h — Karaoke Dan Sing</li>
+			<li>19h — Concert</li>
+		</ul>
+		<p><strong>Tout au long de l'après-midi :</strong></p>
+		<ul>
+			<li>Circuit cyclo disco avec La Jacqueline — parcours vélo dans Zonneklopper en musique</li>
+			<li>Shinobi Rider — atelier pour faire des smoothies en pédalant</li>
+			<li>Pimp my bike — customisation de vélo version cosmique</li>
+			<li>Peinture à roulette avec Joëlle — fresque participative à une roue</li>
+			<li>Crazy bike — flotte de vélos rigolos et improbables à essayer</li>
+			<li>Cycletoile — projections de films autour du vélo</li>
+			<li>Concert de sonnette — atelier musical autogéré</li>
+			<li>Pro Vélo — stand et roue de la fortune</li>
+		</ul>
+
+		<h4>Dimanche 1er juin — 14h–19h</h4>
+		<ul>
+			<li>14h–18h — Circuit cyclo disco avec La Jacqueline</li>
+			<li>14h45–16h — Cycletoile, projections de films autour du vélo</li>
+			<li>15h–19h — Little Bike Hugs — circuit pour les tout-petits avec vélos graouuu</li>
+			<li>16h — Arrivée de la Kidical Mass</li>
+			<li>16h — Spectacle de Mantra Pop Show</li>
+			<li>17h — Disco party avec Bruno</li>
+		</ul>
+
+		<p style="margin-top:2rem; font-style:italic;">Tout le weekend : vélos pour enfants à disposition pour rouler sur le circuit — petite restauration et bonne ambiance !</p>
+	</main>
+
+	<a href="../" class="back-link">← Retour à cyklopper.be</a>
+
+	<footer>
+		<section id="part-end" style="display:flex; gap:1rem; justify-content:center; padding:2rem 1rem;">
+			<a href="https://www.facebook.com/atelierCyklopper/" class="bulle" target="_blank">Facebook</a>
+			<a href="https://www.instagram.com/cyklopper/?__d=1%2F" class="bulle" target="_blank">Instagram</a>
+			<a href="mailto:ateliercyklopper@protonmail.com" class="bulle">Contact</a>
+		</section>
+	</footer>
+
+	<script>
+		function scrollC25(dir) {
+			const el = document.getElementById('c25-slide');
+			el.scrollBy({ left: dir * el.clientWidth * 0.75, behavior: 'smooth' });
+		}
+	</script>
+</body>
+</html>

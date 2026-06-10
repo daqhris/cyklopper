@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Cosmik Bike Festival 2026 — 2ème édition — Cyklopper</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Cosmik Bike Festival 2026 — 2ème édition mondiale du vélo de Forest. 4 et 5 juillet 2026, Zonneklopper, Forest, Bruxelles.">
+	<meta name="theme-color" content="#FFFF00"/>
+	<link rel="icon" type="image/x-icon" href="../static/images/logo.jpg">
+	<link rel="stylesheet" href="../static/css/main.css">
+	<style>
+		* { box-sizing: border-box; }
+
+		body {
+			background: #0a0a0a;
+			color: #f0f0f0;
+			margin: 0;
+			padding: 0;
+			font-family: inherit;
+		}
+
+		/* ── Ticker top ── */
+		.ticker-top {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			z-index: 200;
+			background: #FFFF00;
+			color: #111;
+			font-size: 0.82rem;
+			font-weight: 800;
+			letter-spacing: 0.07em;
+			border-bottom: 2px solid #111;
+			height: 2rem;
+			display: flex;
+			align-items: center;
+		}
+		.ticker-top marquee { width: 100%; }
+		body { padding-top: 2rem; }
+
+		/* ── Hero: poster + countdown ── */
+		.hero {
+			min-height: 100svh;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			padding: 3rem 1.5rem 2rem;
+			position: relative;
+			overflow: hidden;
+		}
+
+		/* Poster image as hero background/element */
+		.poster-wrap {
+			position: relative;
+			width: 100%;
+			max-width: 480px;
+			margin-bottom: 2rem;
+		}
+		.poster-wrap img {
+			width: 100%;
+			height: auto;
+			display: block;
+			border: 3px solid #FFFF00;
+			border-radius: 2px;
+			box-shadow: 0 0 60px rgba(255,255,0,0.15);
+		}
+		/* Fallback if no poster yet */
+		.poster-placeholder {
+			width: 100%;
+			max-width: 480px;
+			aspect-ratio: 2/3;
+			background: #1a1a1a;
+			border: 3px solid #FFFF00;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			margin-bottom: 2rem;
+			border-radius: 2px;
+		}
+		.poster-placeholder .poster-title {
+			font-size: clamp(1.4rem, 6vw, 2.8rem);
+			font-weight: 900;
+			color: #FFFF00;
+			line-height: 1.1;
+			letter-spacing: -0.02em;
+			padding: 1.5rem;
+		}
+		.poster-placeholder .poster-sub {
+			color: #aaa;
+			font-size: 0.9rem;
+			padding: 0 1.5rem 1.5rem;
+		}
+
+		/* ── Countdown clock ── */
+		.countdown-section {
+			width: 100%;
+			max-width: 540px;
+		}
+		.countdown-status {
+			font-size: 0.7rem;
+			letter-spacing: 0.15em;
+			text-transform: uppercase;
+			color: #FFFF00;
+			margin-bottom: 0.8rem;
+			font-weight: 700;
+		}
+		.clock {
+			display: flex;
+			justify-content: center;
+			gap: 0.4rem;
+			font-variant-numeric: tabular-nums;
+		}
+		.clock-unit {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			background: #1a1a1a;
+			border: 1.5px solid #333;
+			border-radius: 3px;
+			padding: 0.6rem 0.8rem 0.4rem;
+			min-width: 3.5rem;
+		}
+		.clock-unit .num {
+			font-size: clamp(1.6rem, 6vw, 2.8rem);
+			font-weight: 900;
+			color: #FFFF00;
+			line-height: 1;
+		}
+		.clock-unit .lbl {
+			font-size: 0.55rem;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+			color: #666;
+			margin-top: 0.3rem;
+		}
+		.clock-sep {
+			font-size: clamp(1.4rem, 5vw, 2.4rem);
+			color: #333;
+			align-self: center;
+			line-height: 1;
+			font-weight: 900;
+		}
+		.festival-live {
+			font-size: clamp(1.2rem, 4vw, 2rem);
+			font-weight: 900;
+			color: #FFFF00;
+			letter-spacing: 0.05em;
+			animation: pulse 1.2s ease-in-out infinite;
+		}
+		@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+		/* ── Info section ── */
+		.info-section {
+			max-width: 700px;
+			margin: 0 auto;
+			padding: 3rem 1.5rem;
+			color: #ccc;
+		}
+		.info-section h2 {
+			color: #FFFF00;
+			font-size: 1.4rem;
+			border-bottom: 1.5px solid #333;
+			padding-bottom: 0.5rem;
+			margin-bottom: 1rem;
+		}
+		.info-section p { line-height: 1.7; margin-bottom: 1rem; }
+		.info-section strong { color: #f0f0f0; }
+
+		.venue-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+			gap: 0.75rem;
+			margin: 1.5rem 0;
+		}
+		.venue-item {
+			background: #151515;
+			border: 1px solid #2a2a2a;
+			border-radius: 3px;
+			padding: 0.9rem 1rem;
+			text-align: center;
+		}
+		.venue-item .v-num {
+			display: block;
+			font-size: 1.5rem;
+			font-weight: 900;
+			color: #FFFF00;
+			line-height: 1;
+		}
+		.venue-item .v-lbl {
+			font-size: 0.68rem;
+			color: #777;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			margin-top: 0.3rem;
+			display: block;
+		}
+
+		.cta-band {
+			background: #FFFF00;
+			color: #111;
+			text-align: center;
+			padding: 2rem 1.5rem;
+		}
+		.cta-band h2 { font-size: 1.3rem; margin-bottom: 0.75rem; }
+		.cta-band a {
+			display: inline-block;
+			background: #111;
+			color: #FFFF00;
+			padding: 0.6rem 1.4rem;
+			font-size: 0.85rem;
+			font-weight: 800;
+			letter-spacing: 0.06em;
+			text-decoration: none;
+			border-radius: 2px;
+			margin-top: 0.5rem;
+		}
+		.cta-band a:hover { background: #333; }
+
+		.back-link {
+			display: inline-block;
+			margin: 2rem 1.5rem 1rem;
+			font-size: 0.8rem;
+			font-weight: 700;
+			color: #FFFF00;
+			text-decoration: none;
+			border-bottom: 1.5px solid #FFFF00;
+			padding-bottom: 1px;
+		}
+		.back-link:hover { color: #fff; border-color: #fff; }
+
+		footer .bulle {
+			background: transparent;
+			color: #FFFF00;
+			border-color: #FFFF00;
+		}
+		footer .bulle:hover { background: #FFFF00; color: #111; }
+	</style>
+</head>
+<body>
+
+	<div class="ticker-top">
+		<marquee scrollamount="8">COSMIK BIKE FESTIVAL 2026 — 2ÈME ÉDITION MONDIALE DU VÉLO DE FOREST &nbsp;·&nbsp; 4 ET 5 JUILLET 2026 &nbsp;·&nbsp; ZONNEKLOPPER, FOREST, BRUXELLES &nbsp;·&nbsp; PARTICIPEZ — BÉNÉVOLES BIENVENUS &nbsp;·&nbsp;</marquee>
+	</div>
+
+	<section class="hero">
+		<!-- Poster: place poster image at cosmik-2026/poster.jpg (or adapt src) -->
+		<!-- If poster exists, show it; script below reveals whichever loads -->
+		<div class="poster-wrap" id="poster-wrap" style="display:none">
+			<img id="poster-img" src="poster.jpg" alt="Affiche Cosmik Bike Festival 2026">
+		</div>
+		<!-- Fallback shown until/unless poster loads -->
+		<div class="poster-placeholder" id="poster-placeholder">
+			<div class="poster-title">Cosmik<br>Bike<br>Festival</div>
+			<div class="poster-sub">2<sup>ème</sup> édition · Forest · 2026</div>
+		</div>
+
+		<div class="countdown-section">
+			<div class="countdown-status" id="countdown-status">COMPTE À REBOURS</div>
+			<div class="clock" id="clock">
+				<div class="clock-unit"><span class="num" id="c-days">—</span><span class="lbl">jours</span></div>
+				<span class="clock-sep">:</span>
+				<div class="clock-unit"><span class="num" id="c-hours">—</span><span class="lbl">heures</span></div>
+				<span class="clock-sep">:</span>
+				<div class="clock-unit"><span class="num" id="c-mins">—</span><span class="lbl">min</span></div>
+				<span class="clock-sep">:</span>
+				<div class="clock-unit"><span class="num" id="c-secs">—</span><span class="lbl">sec</span></div>
+			</div>
+		</div>
+	</section>
+
+	<div class="info-section">
+		<h2>À propos du festival</h2>
+		<p>Le <strong>Cosmik Bike Festival</strong> est une fête mondiale du vélo organisée à Zonneklopper, un espace traversant l'îlot entre l'avenue de la Verrerie et la chaussée de Neerstalle à Forest, Bruxelles.</p>
+		<p>Spectacles, ateliers, projections, musique, vélos fous — tout cela autour de projets non commerciaux et festifs. Si vous avez un projet vélo, fou, fabuleux, joyeux : rejoignez-nous.</p>
+
+		<h2>Lieux et capacités</h2>
+		<div class="venue-grid">
+			<div class="venue-item"><span class="v-num">1000</span><span class="v-lbl">m² extérieur</span></div>
+			<div class="venue-item"><span class="v-num">1000</span><span class="v-lbl">m² intérieur</span></div>
+			<div class="venue-item"><span class="v-num">1</span><span class="v-lbl">salle concert</span></div>
+			<div class="venue-item"><span class="v-num">1</span><span class="v-lbl">salle projection</span></div>
+			<div class="venue-item"><span class="v-num">1</span><span class="v-lbl">atelier vélo</span></div>
+			<div class="venue-item"><span class="v-num">1</span><span class="v-lbl">bar</span></div>
+		</div>
+
+		<h2>Programme</h2>
+		<p><em>Le lineup sera annoncé prochainement. Revenez nous voir.</em></p>
+
+		<h2>Adresse</h2>
+		<p>Zonneklopper — 23 avenue de la Verrerie, 1190 Forest, Belgique.<br>
+		<a href="https://www.openstreetmap.org/?mlat=50.8163&mlon=4.3363#map=17/50.8163/4.3363" target="_blank" rel="noopener" style="color:#FFFF00;">Voir sur OpenStreetMap →</a></p>
+	</div>
+
+	<div class="cta-band">
+		<h2>Vous avez un projet vélo ?</h2>
+		<p>Proposez une animation, un atelier, un spectacle ou une performance.</p>
+		<a href="https://lite.framacalc.org/3nnifnwayr-aliy" target="_blank" rel="noopener">S'inscrire comme bénévole ou participant →</a>
+	</div>
+
+	<a href="../" class="back-link">← Retour à cyklopper.be</a>
+
+	<footer>
+		<section style="display:flex; gap:1rem; justify-content:center; padding:2rem 1rem;">
+			<a href="https://www.facebook.com/atelierCyklopper/" class="bulle" target="_blank">Facebook</a>
+			<a href="https://www.instagram.com/cyklopper/?__d=1%2F" class="bulle" target="_blank">Instagram</a>
+			<a href="mailto:ateliercyklopper@protonmail.com" class="bulle">Contact</a>
+		</section>
+	</footer>
+
+	<script>
+		/* ── Poster: show real image if it loads, else keep placeholder ── */
+		const posterImg = document.getElementById('poster-img');
+		const posterWrap = document.getElementById('poster-wrap');
+		const posterPlaceholder = document.getElementById('poster-placeholder');
+		posterImg.onload = function() {
+			posterWrap.style.display = '';
+			posterPlaceholder.style.display = 'none';
+		};
+		posterImg.onerror = function() {
+			posterWrap.style.display = 'none';
+			posterPlaceholder.style.display = '';
+		};
+
+		/* ── Countdown ── */
+		// Festival: 4 July 2026 at 14:00 CEST (= UTC+2 → 12:00 UTC)
+		// End:      5 July 2026 at 23:59 CEST (= 21:59 UTC)
+		const START = new Date('2026-07-04T12:00:00Z');
+		const END   = new Date('2026-07-05T21:59:00Z');
+
+		const pad = n => String(n).padStart(2, '0');
+
+		function tick() {
+			const now = new Date();
+			const status = document.getElementById('countdown-status');
+			const clock  = document.getElementById('clock');
+
+			if (now >= END) {
+				status.textContent = 'FESTIVAL TERMINÉ — À L\'AN PROCHAIN !';
+				clock.innerHTML = '';
+				return;
+			}
+			if (now >= START) {
+				status.textContent = '';
+				clock.innerHTML = '<span class="festival-live">🎉 C\'EST MAINTENANT — VENEZ !</span>';
+				return;
+			}
+
+			const diff = START - now;
+			const d = Math.floor(diff / 86400000);
+			const h = Math.floor((diff % 86400000) / 3600000);
+			const m = Math.floor((diff % 3600000) / 60000);
+			const s = Math.floor((diff % 60000) / 1000);
+
+			document.getElementById('c-days').textContent  = d;
+			document.getElementById('c-hours').textContent = pad(h);
+			document.getElementById('c-mins').textContent  = pad(m);
+			document.getElementById('c-secs').textContent  = pad(s);
+		}
+		tick();
+		setInterval(tick, 1000);
+	</script>
+</body>
+</html>
