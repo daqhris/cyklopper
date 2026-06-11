@@ -16,7 +16,18 @@
 	<link rel="icon" type="image/x-icon" href="static/images/logo.jpg">
 	<link rel="stylesheet" href="static/css/main.css">
 	<style>
-		/* ── Marquee ticker at top ── */
+		/* ── Kill the original nav (homepage uses bottom-bar instead) ── */
+		nav { display: none !important; }
+
+		/* ── Push body away from fixed bars ── */
+		body {
+			padding-top: 2rem;      /* ticker height */
+			padding-bottom: 3.6rem; /* bottom bar height */
+		}
+
+		/* ═══════════════════════════════════════════
+		   TOP TICKER
+		═══════════════════════════════════════════ */
 		.ticker-top {
 			position: fixed;
 			top: 0;
@@ -37,7 +48,13 @@
 		}
 		.ticker-top marquee { width: 100%; }
 
-		/* ── Bottom bar ── */
+		/* ═══════════════════════════════════════════
+		   BOTTOM BAR
+		   Layout: [festival pills] [countdown] [lang]
+		   On narrow screens the countdown shrinks to
+		   just the number; on very small screens the
+		   bar wraps to two lines gracefully.
+		═══════════════════════════════════════════ */
 		.bottom-bar {
 			position: fixed;
 			bottom: 0;
@@ -49,27 +66,33 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			padding: 0 1rem;
-			height: 3.2rem;
+			padding: 0 0.75rem;
+			min-height: 3.2rem;
 			border-top: 2px solid #FFFF00;
-			gap: 0.5rem;
+			gap: 0.4rem;
 			box-sizing: border-box;
+			/* Safety: never overflow the viewport */
+			overflow: hidden;
 		}
+
+		/* Festival edition pills */
 		.bottom-bar__festivals {
 			display: flex;
-			gap: 0.5rem;
+			gap: 0.3rem;
 			flex-shrink: 0;
 		}
+
+		/* Shared pill style */
 		.bottom-bar a.pill,
 		.bottom-bar button.pill {
 			display: inline-flex;
 			align-items: center;
-			gap: 0.3em;
+			gap: 0.25em;
 			background: #FFFF00;
 			color: #111;
 			border: none;
 			border-radius: 2px;
-			padding: 0.25rem 0.65rem;
+			padding: 0.25rem 0.55rem;
 			font-size: 0.72rem;
 			font-weight: 800;
 			letter-spacing: 0.04em;
@@ -78,6 +101,7 @@
 			white-space: nowrap;
 			line-height: 1.4;
 			transition: background 0.15s, color 0.15s;
+			font-family: inherit;
 		}
 		.bottom-bar a.pill:hover,
 		.bottom-bar button.pill:hover {
@@ -88,22 +112,30 @@
 			background: #fff500;
 			box-shadow: 0 0 0 1.5px #FFFF00;
 		}
+
+		/* Countdown — middle, grows to fill available space */
 		.bottom-bar__countdown {
-			flex: 1;
+			flex: 1 1 0;
+			min-width: 0; /* allow shrinking */
 			text-align: center;
 			font-size: 0.72rem;
 			font-weight: 700;
 			letter-spacing: 0.04em;
 			color: #FFFF00;
 			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			line-height: 1.3;
 		}
 		#countdown-display {
 			font-variant-numeric: tabular-nums;
-			font-size: 0.92rem;
+			font-size: 0.9rem;
 		}
+
+		/* Language buttons */
 		.bottom-bar__lang {
 			display: flex;
-			gap: 0.3rem;
+			gap: 0.25rem;
 			flex-shrink: 0;
 		}
 		.bottom-bar__lang button.pill {
@@ -111,7 +143,7 @@
 			color: #FFFF00;
 			border: 1.5px solid #FFFF00;
 			font-size: 0.68rem;
-			padding: 0.2rem 0.45rem;
+			padding: 0.2rem 0.4rem;
 		}
 		.bottom-bar__lang button.pill.active,
 		.bottom-bar__lang button.pill:hover {
@@ -119,44 +151,52 @@
 			color: #111;
 		}
 
-		/* Push body content away from fixed bars */
-		body { padding-top: 2rem; padding-bottom: 3.5rem; }
-
-		/* ── Open-source footer note ── */
-		.opensource-note {
-			text-align: center;
-			color: darkblue;
-			padding: 0.3rem 1rem;
-			line-height: 2rem;
-			margin: 0;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			min-height: 2rem;
-			background: transparent;
+		/* ── On very narrow screens (≤ 420px) hide the countdown label,
+		      keep just the timer digits. Also tighten pill padding. ── */
+		@media screen and (max-width: 420px) {
+			.countdown-label-text { display: none; }
+			#countdown-display { font-size: 0.8rem; }
+			.bottom-bar a.pill,
+			.bottom-bar button.pill {
+				padding: 0.2rem 0.4rem;
+				font-size: 0.65rem;
+			}
 		}
-		.opensource-note a { color: darkgreen; }
 
-		/* ── i18n: hide non-active language strings ── */
+		/* ── On truly tiny screens (≤ 340px) wrap to two rows ── */
+		@media screen and (max-width: 340px) {
+			.bottom-bar {
+				flex-wrap: wrap;
+				min-height: auto;
+				padding: 0.35rem 0.5rem;
+				gap: 0.25rem;
+			}
+			.bottom-bar__countdown {
+				order: 3;
+				width: 100%;
+				text-align: center;
+				padding-bottom: 0.2rem;
+			}
+			body { padding-bottom: 5rem; }
+		}
+
+		/* ═══════════════════════════════════════════
+		   i18n: hide non-active language strings
+		═══════════════════════════════════════════ */
 		[data-lang] { display: none; }
 		[data-lang].lang-active { display: inline; }
-
-		/* ── Kill the original nav entirely at all breakpoints ── */
-		nav { display: none !important; }
 	</style>
 </head>
 <body>
 
-	<!-- ── TOP: scrolling ticker (was footer) ── -->
-	<div class="ticker-top" aria-label="Annonce festival">
+	<!-- ── TOP: scrolling ticker ── -->
+	<div class="ticker-top" role="marquee" aria-label="Annonce festival">
 		<marquee behavior="" direction="" scrollamount="8" aria-hidden="true">
 			<span data-lang="fr" class="lang-active">COSMIK BIKE FESTIVAL MONDIAL DU VÉLO DE FOREST &nbsp;·&nbsp; 04 et 05 juillet 2026 &nbsp;·&nbsp; 2<sup>è</sup> édition à Zonneklopper &nbsp;·&nbsp; 23 avenue de la Verrerie, Forest, Bruxelles &nbsp;·&nbsp;</span>
 			<span data-lang="nl">COSMIK BIKE FESTIVAL WERELDFIETSFEEST VAN FOREST &nbsp;·&nbsp; 4 en 5 juli 2026 &nbsp;·&nbsp; 2<sup>e</sup> editie in Zonneklopper &nbsp;·&nbsp; Glazeniersstraat 23, Vorst, Brussel &nbsp;·&nbsp;</span>
 			<span data-lang="en">COSMIK BIKE FESTIVAL WORLD CYCLING FESTIVAL OF FOREST &nbsp;·&nbsp; July 4–5, 2026 &nbsp;·&nbsp; 2<sup>nd</sup> edition at Zonneklopper &nbsp;·&nbsp; 23 avenue de la Verrerie, Forest, Brussels &nbsp;·&nbsp;</span>
 		</marquee>
 	</div>
-
-	<!-- nav element removed: was causing a ghost overlay on small screens via main.css fixed positioning -->
 
 	<main>
 		<section id="part-top">
@@ -209,7 +249,7 @@
 				</div>
 				<button class="gallery-btn gallery-btn--right" aria-label="Défiler à droite" onclick="scrollGallery(1)">&#8594;</button>
 			</div>
-			<div class="" style="margin: 60px;">
+			<div style="margin: 60px;">
 				<p>
 					<span data-lang="fr" class="lang-active">Vous avez un projet vélo, fou, fabuleux, joyeux? Venez partager votre enthousiasme et participer au COSMIK BIKE FESTIVAL MONDIAL DU VÉLO DE FOREST le 04 et 05 juillet 2026 au 23 avenue de la verrerie.</span>
 					<span data-lang="nl">Heb je een gek, fabuleus of vrolijk fietsproject? Kom je enthousiasme delen op het COSMIK BIKE FESTIVAL WERELDFIETSFEEST VAN FOREST op 4 en 5 juli 2026, Glazeniersstraat 23.</span>
@@ -268,12 +308,12 @@
 		</section>
 
 		<section id="part-end">
-			<a href="https://www.facebook.com/atelierCyklopper/" class="bulle" target="_blank"> Facebook </a>
-			<a href="https://www.instagram.com/cyklopper/?__d=1%2F" class="bulle" target="_blank"> Instagram </a>
-			<a href="mailto:ateliercyklopper@protonmail.com" class="bulle" target="_blank"> Contact </a>
+			<a href="https://www.facebook.com/atelierCyklopper/" class="bulle" target="_blank" rel="noopener">Facebook</a>
+			<a href="https://www.instagram.com/cyklopper/?__d=1%2F" class="bulle" target="_blank" rel="noopener">Instagram</a>
+			<a href="mailto:ateliercyklopper@protonmail.com" class="bulle">Contact</a>
 		</section>
 
-		<!-- Open source + last update note -->
+		<!-- Open source note -->
 		<p class="opensource-note" id="opensource-note">
 			<span data-lang="fr" class="lang-active">Site libre et open source : <a href="https://github.com/daqhris/cyklopper" target="_blank" rel="noopener">github.com/daqhris/cyklopper</a></span>
 			<span data-lang="nl">Vrije open-source website: <a href="https://github.com/daqhris/cyklopper" target="_blank" rel="noopener">github.com/daqhris/cyklopper</a></span>
@@ -281,26 +321,29 @@
 		</p>
 	</main>
 
-	<!-- ── BOTTOM: fixed bar (was nav, now actions) ── -->
+	<!-- ── BOTTOM BAR ── -->
 	<div class="bottom-bar" role="navigation" aria-label="Actions rapides">
+
+		<!-- Left: edition links -->
 		<div class="bottom-bar__festivals">
 			<a href="cosmik-2025/" class="pill" aria-label="Cosmik 2025 — édition passée">🚲 2025</a>
 			<a href="cosmik-2026/" class="pill upcoming" aria-label="Cosmik 2026 — prochaine édition">✨ 2026</a>
 		</div>
 
-		<div class="bottom-bar__countdown" aria-live="polite">
-			<span id="countdown-label">
+		<!-- Middle: countdown -->
+		<div class="bottom-bar__countdown" aria-live="polite" aria-atomic="true">
+			<span class="countdown-label-text" id="countdown-label" aria-hidden="true">
 				<span data-lang="fr" class="lang-active">Festival dans </span>
 				<span data-lang="nl">Festival over </span>
 				<span data-lang="en">Festival in </span>
-			</span>
-			<span id="countdown-display">…</span>
+			</span><span id="countdown-display">…</span>
 		</div>
 
-		<div class="bottom-bar__lang" aria-label="Choisir la langue">
-			<button class="pill active" id="lang-fr" onclick="setLang('fr')" aria-pressed="true">FR</button>
-			<button class="pill" id="lang-nl" onclick="setLang('nl')" aria-pressed="false">NL</button>
-			<button class="pill" id="lang-en" onclick="setLang('en')" aria-pressed="false">EN</button>
+		<!-- Right: language switcher -->
+		<div class="bottom-bar__lang" role="group" aria-label="Choisir la langue">
+			<button class="pill active" id="lang-fr" onclick="setLang('fr')" aria-pressed="true" aria-label="Français">FR</button>
+			<button class="pill" id="lang-nl" onclick="setLang('nl')" aria-pressed="false" aria-label="Nederlands">NL</button>
+			<button class="pill" id="lang-en" onclick="setLang('en')" aria-pressed="false" aria-label="English">EN</button>
 		</div>
 	</div>
 
@@ -314,60 +357,99 @@
 
 		/* ── Language switch ── */
 		function setLang(lang) {
+			// Update html[lang] attribute for screen-readers and SEO
+			document.documentElement.lang = lang;
+
 			document.querySelectorAll('[data-lang]').forEach(el => {
 				el.classList.toggle('lang-active', el.dataset.lang === lang);
 			});
-			['fr','nl','en'].forEach(l => {
+			['fr', 'nl', 'en'].forEach(l => {
 				const btn = document.getElementById('lang-' + l);
-				if (btn) { btn.classList.toggle('active', l === lang); btn.setAttribute('aria-pressed', l === lang); }
+				if (btn) {
+					btn.classList.toggle('active', l === lang);
+					btn.setAttribute('aria-pressed', l === lang);
+				}
 			});
 			localStorage.setItem('cyklopper-lang', lang);
 		}
-		// Restore persisted language
-		const savedLang = localStorage.getItem('cyklopper-lang');
-		if (savedLang && ['fr','nl','en'].includes(savedLang)) setLang(savedLang);
 
-		/* ── Countdown to Cosmik 2026 (4 July 2026, 14:00 CEST = UTC+2) ── */
-		const FESTIVAL_START = new Date('2026-07-04T12:00:00Z'); // 14h Brussels = 12h UTC
-		const FESTIVAL_END   = new Date('2026-07-05T22:00:00Z'); // 5 July 24h
+		// Restore persisted language preference
+		const savedLang = localStorage.getItem('cyklopper-lang');
+		if (savedLang && ['fr', 'nl', 'en'].includes(savedLang)) setLang(savedLang);
+
+		/* ── Countdown to Cosmik 2026 ──
+		   Festival start: 4 July 2026 14:00 CEST = 12:00 UTC
+		   Festival end:   5 July 2026 24:00 CEST = 22:00 UTC  */
+		const FESTIVAL_START = new Date('2026-07-04T12:00:00Z');
+		const FESTIVAL_END   = new Date('2026-07-05T22:00:00Z');
+
+		const pad = n => String(n).padStart(2, '0');
+
+		// Returns true when the viewport is considered narrow (≤ 420px)
+		function isNarrow() { return window.innerWidth <= 420; }
 
 		function updateCountdown() {
-			const now = new Date();
+			const now  = new Date();
 			const display = document.getElementById('countdown-display');
-			const label = document.getElementById('countdown-label');
-			const lang = localStorage.getItem('cyklopper-lang') || 'fr';
+			const label   = document.getElementById('countdown-label');
+			const lang    = localStorage.getItem('cyklopper-lang') || 'fr';
 
+			// After festival
 			if (now >= FESTIVAL_END) {
 				display.textContent = '';
-				const msgs = { fr: 'Festival terminé — à l\'an prochain !', nl: 'Festival voorbij — tot volgend jaar!', en: 'Festival over — see you next year!' };
-				if (label) label.textContent = msgs[lang] || msgs.fr;
-				return;
-			}
-			if (now >= FESTIVAL_START) {
-				display.textContent = '';
-				const msgs = { fr: '🎉 C\'EST MAINTENANT — VENEZ !', nl: '🎉 HET IS NU — KOM ERBIJ!', en: '🎉 HAPPENING NOW — JOIN US!' };
+				const msgs = {
+					fr: 'Festival terminé — à l\'an prochain !',
+					nl: 'Festival voorbij — tot volgend jaar!',
+					en: 'Festival over — see you next year!'
+				};
 				if (label) label.textContent = msgs[lang] || msgs.fr;
 				return;
 			}
 
+			// During festival
+			if (now >= FESTIVAL_START) {
+				display.textContent = '';
+				const msgs = {
+					fr: '🎉 C\'EST MAINTENANT !',
+					nl: '🎉 NU BEZIG!',
+					en: '🎉 HAPPENING NOW!'
+				};
+				if (label) label.textContent = msgs[lang] || msgs.fr;
+				return;
+			}
+
+			// Countdown
 			const diff = FESTIVAL_START - now;
 			const d = Math.floor(diff / 86400000);
 			const h = Math.floor((diff % 86400000) / 3600000);
 			const m = Math.floor((diff % 3600000) / 60000);
 			const s = Math.floor((diff % 60000) / 1000);
 
-			const pad = n => String(n).padStart(2, '0');
-			const labels = {
-				fr: { pre: 'Festival dans ', d: 'j', h: 'h', m: 'm', s: 's' },
-				nl: { pre: 'Festival over ', d: 'd', h: 'u', m: 'm', s: 's' },
-				en: { pre: 'Festival in ',   d: 'd', h: 'h', m: 'm', s: 's' },
+			// Unit labels per language
+			const unitLabels = {
+				fr: { d: 'j', h: 'h', m: 'm', s: 's' },
+				nl: { d: 'd', h: 'u', m: 'm', s: 's' },
+				en: { d: 'd', h: 'h', m: 'm', s: 's' },
 			};
-			const L = labels[lang] || labels.fr;
-			if (label) { label.querySelectorAll('[data-lang]').forEach(el => el.classList.toggle('lang-active', el.dataset.lang === lang)); }
-			display.textContent = `${d}${L.d} ${pad(h)}${L.h} ${pad(m)}${L.m} ${pad(s)}${L.s}`;
+			const L = unitLabels[lang] || unitLabels.fr;
+
+			// On narrow screens, show only days+hours to save space
+			if (isNarrow()) {
+				display.textContent = `${d}${L.d} ${pad(h)}${L.h}`;
+			} else {
+				display.textContent = `${d}${L.d} ${pad(h)}${L.h} ${pad(m)}${L.m} ${pad(s)}${L.s}`;
+			}
+
+			// Keep the aria-label on the countdown region meaningful for screen-readers
+			const countdown = document.querySelector('.bottom-bar__countdown');
+			if (countdown) {
+				const full = `${d}${L.d} ${pad(h)}${L.h} ${pad(m)}${L.m} ${pad(s)}${L.s}`;
+				countdown.setAttribute('aria-label', `Festival dans ${full}`);
+			}
 		}
+
 		updateCountdown();
 		setInterval(updateCountdown, 1000);
-</script>
+	</script>
 </body>
 </html>
