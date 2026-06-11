@@ -52,3 +52,12 @@ jobs:
           exclude: |
             **/.git*
             **/.git*/**
+            index.html
+
+      - name: Deploy modified index.html via curl
+        run: |
+          curl --ftp-create-dirs \
+               --upload-file index.html \
+               --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" \
+               "ftp://${{ secrets.FTP_SERVER }}/index.html"
+        
