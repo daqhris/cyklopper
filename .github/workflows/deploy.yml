@@ -1,0 +1,31 @@
+name: Deploy to OVH
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # needed to get full git history
+
+      - name: Inject last-modified date
+        run: |
+          # Get the date of the latest commit in a human-readable format
+          COMMIT_DATE=$(git log -1 --format="%cI")  # e.g. 2026-05-11T14:32:00+02:00
+          # Replace the placeholder in index.html
+          sed -i "s/GIT_LAST_MODIFIED/$COMMIT_DATE/g" index.html
+          echo "Injected date: $COMMIT_DATE"
+
+      - name: Deploy via FTP to OVH
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./
+          server-dir: /
