@@ -16,9 +16,6 @@
 	<link rel="icon" type="image/x-icon" href="static/images/logo.jpg">
 	<link rel="stylesheet" href="static/css/main.css">
 	<style>
-		/* ── Kill the original nav (homepage uses bottom-bar instead) ── */
-		nav { display: none !important; }
-
 		/* ── Push body away from fixed bars ── */
 		body {
 			padding-top: 2rem;      /* ticker height */
@@ -435,9 +432,9 @@
 
 			// On narrow screens, show only days+hours to save space
 			if (isNarrow()) {
-				display.textContent = `${d}${L.d} ${pad(h)}${L.h}`;
+				display.textContent = `⏱️ ${d}${L.d} ${pad(h)}${L.h}`;
 			} else {
-				display.textContent = `${d}${L.d} ${pad(h)}${L.h} ${pad(m)}${L.m} ${pad(s)}${L.s}`;
+				display.textContent = `⏱️ ${d}${L.d} ${pad(h)}${L.h} ${pad(m)}${L.m} ${pad(s)}${L.s}`;
 			}
 
 			// Keep the aria-label on the countdown region meaningful for screen-readers
