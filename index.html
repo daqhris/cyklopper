@@ -269,9 +269,9 @@
 
 		<!-- Open source + last update note -->
 		<p class="opensource-note" id="opensource-note">
-			<span data-lang="fr" class="lang-active">Site libre et open source : <a href="https://github.com/daqhris/cyklopper" target="_blank" rel="noopener">github.com/daqhris/cyklopper</a> | dernière mise à jour : <span id="last-modified">GIT_LAST_MODIFIED</span></span>
-			<span data-lang="nl">Vrije open-source website: <a href="https://github.com/daqhris/cyklopper" target="_blank" rel="noopener">github.com/daqhris/cyklopper</a> | laatste update: <span class="last-modified-nl">GIT_LAST_MODIFIED</span></span>
-			<span data-lang="en">Free open-source site: <a href="https://github.com/daqhris/cyklopper" target="_blank" rel="noopener">github.com/daqhris/cyklopper</a> | last updated: <span class="last-modified-en">GIT_LAST_MODIFIED</span></span>
+			<span data-lang="fr" class="lang-active">Site libre et open source : <a href="https://github.com/daqhris/cyklopper" target="_blank" rel="noopener">github.com/daqhris/cyklopper</a> | dernière mise à jour : <span id="last-modified">GIT_LAST_MODIFIED_FR</span></span>
+			<span data-lang="nl">Vrije open-source website: <a href="https://github.com/daqhris/cyklopper" target="_blank" rel="noopener">github.com/daqhris/cyklopper</a> | laatste update: <span class="last-modified-nl">GIT_LAST_MODIFIED_NL</span></span>
+			<span data-lang="en">Free open-source site: <a href="https://github.com/daqhris/cyklopper" target="_blank" rel="noopener">github.com/daqhris/cyklopper</a> | last updated: <span class="last-modified-en">GIT_LAST_MODIFIED_EN</span></span>
 		</p>
 	</main>
 
@@ -362,12 +362,6 @@
 		}
 		updateCountdown();
 		setInterval(updateCountdown, 1000);
-
-		const lmEl = document.getElementById('last-modified');
-		const lmDate = new Date('GIT_LAST_MODIFIED'); // replaced at deploy time
-		const diffDays = Math.floor((Date.now() - lmDate) / 86400000);
-		const rel = diffDays === 0 ? "aujourd'hui" : diffDays === 1 ? "hier" : `il y a ${diffDays} jours`;
-		document.getElementById('last-modified').textContent = rel;
-		document.querySelectorAll('.last-modified-nl, .last-modified-en').forEach(el => el.textContent = rel);	</script>
+</script>
 </body>
 </html>

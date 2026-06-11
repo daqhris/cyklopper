@@ -11,15 +11,35 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # needed to get full git history
+          fetch-depth: 0
 
       - name: Inject last-modified date
         run: |
-          # Get the date of the latest commit in a human-readable format
-          COMMIT_DATE=$(git log -1 --format="%cI")  # e.g. 2026-05-11T14:32:00+02:00
-          # Replace the placeholder in index.html
-          sed -i "s/GIT_LAST_MODIFIED/$COMMIT_DATE/g" index.html
-          echo "Injected date: $COMMIT_DATE"
+          COMMIT_EPOCH=$(git log -1 --format="%ct")
+          NOW_EPOCH=$(date +%s)
+          DIFF_SECONDS=$(( NOW_EPOCH - COMMIT_EPOCH ))
+          DIFF_MINUTES=$(( DIFF_SECONDS / 60 ))
+          DIFF_HOURS=$(( DIFF_SECONDS / 3600 ))
+          DIFF_DAYS=$(( DIFF_SECONDS / 86400 ))
+
+          if [ "$DIFF_MINUTES" -lt 60 ]; then
+            LABEL_FR="il y a ${DIFF_MINUTES} min"
+            LABEL_NL="${DIFF_MINUTES} min geleden"
+            LABEL_EN="${DIFF_MINUTES} min ago"
+          elif [ "$DIFF_HOURS" -lt 24 ]; then
+            LABEL_FR="il y a ${DIFF_HOURS}h"
+            LABEL_NL="${DIFF_HOURS}u geleden"
+            LABEL_EN="${DIFF_HOURS}h ago"
+          else
+            LABEL_FR="il y a ${DIFF_DAYS} jours"
+            LABEL_NL="${DIFF_DAYS} dagen geleden"
+            LABEL_EN="${DIFF_DAYS} days ago"
+          fi
+
+          sed -i "s|GIT_LAST_MODIFIED_FR|${LABEL_FR}|g" index.html
+          sed -i "s|GIT_LAST_MODIFIED_NL|${LABEL_NL}|g" index.html
+          sed -i "s|GIT_LAST_MODIFIED_EN|${LABEL_EN}|g" index.html
+          echo "Injected FR: $LABEL_FR | NL: $LABEL_NL | EN: $LABEL_EN"
 
       - name: Deploy via FTP to OVH
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
