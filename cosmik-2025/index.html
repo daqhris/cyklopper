@@ -169,6 +169,85 @@
 		}
 		.cosmik25-lineup p { color: var(--c25-cream); }
 
+		/* ── Radio Panik section ── */
+		.cosmik25-radio {
+			max-width: 760px;
+			margin: 0 auto;
+			padding: 0 1.5rem 2.5rem;
+			background: var(--c25-navy);
+			color: var(--c25-cream);
+		}
+		.cosmik25-radio h2 {
+			font-size: 1.3rem;
+			border-bottom: 2px solid var(--c25-orange);
+			padding-bottom: 0.3rem;
+			color: var(--c25-yellow);
+		}
+		.cosmik25-radio .radio-intro {
+			margin: 0.8rem 0 1.4rem;
+			line-height: 1.6;
+		}
+		.cosmik25-radio .radio-intro a {
+			color: var(--c25-yellow);
+			text-decoration: underline;
+		}
+		.radio-track {
+			background: var(--c25-night);
+			border: 1px solid var(--c25-orange);
+			border-radius: 4px;
+			padding: 1rem 1.2rem;
+			margin-bottom: 1rem;
+		}
+		.radio-track h4 {
+			font-size: 0.85rem;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			color: var(--c25-orange);
+			font-weight: 800;
+			margin: 0 0 0.6rem;
+		}
+		.radio-track audio {
+			width: 100%;
+			display: block;
+			margin-bottom: 0.5rem;
+			accent-color: var(--c25-orange);
+		}
+		.radio-track .radio-links {
+			font-size: 0.78rem;
+			opacity: 0.85;
+		}
+		.radio-track .radio-links a {
+			color: var(--c25-cream);
+			text-decoration: underline;
+			margin-right: 0.8rem;
+		}
+		.radio-track .radio-links a:hover,
+		.cosmik25-radio .radio-intro a:hover {
+			color: #fff;
+		}
+		.radio-fallback {
+			font-size: 0.85rem;
+			font-style: italic;
+			opacity: 0.8;
+			margin-top: -0.3rem;
+			margin-bottom: 0.6rem;
+		}
+		.radio-cta {
+			display: inline-block;
+			background: var(--c25-orange);
+			color: #fff;
+			font-size: 0.8rem;
+			font-weight: 800;
+			letter-spacing: 0.05em;
+			text-transform: uppercase;
+			text-decoration: none;
+			padding: 0.6rem 1.1rem;
+			border-radius: 3px;
+			margin-top: 0.5rem;
+			transition: background 0.15s, color 0.15s;
+		}
+		.radio-cta:hover { background: var(--c25-yellow); color: var(--c25-ink); }
+
 		.back-link {
 			display: inline-block;
 			margin: 1.5rem 1.5rem 0;
@@ -273,6 +352,55 @@
 
 		<p style="margin-top:2rem; font-style:italic;">Tout le weekend : vélos pour enfants à disposition pour rouler sur le circuit — petite restauration et bonne ambiance !</p>
 	</main>
+
+	<section class="cosmik25-radio">
+		<h2>Radio Panik était là 📻</h2>
+		<p class="radio-intro">
+			Le festival a été suivi en direct par <strong>Radio Panik</strong> (105.4 FM) dans son émission
+			<em>Les Promesses de l'Aube</em>, avec un reportage et un entretien avec des co-fondateur·ices de Cyklopper.
+			Réécoutez les extraits ci-dessous, ou retrouvez l'émission complète et tous les détails sur
+			<a href="https://www.radiopanik.org/emissions/les-promesses-de-l-aube/le-velo-qui-cache-la-forest/" target="_blank" rel="noopener">la page de l'émission sur radiopanik.org</a>.
+		</p>
+
+		<div class="radio-track">
+			<h4>Émission complète — Le vélo qui cache la forest</h4>
+			<audio controls preload="none">
+				<source src="https://www.radiopanik.org/media/sounds/les-promesses-de-l-aube/le-velo-qui-cache-la-forest_19696__1.mp3" type="audio/mpeg">
+				<source src="https://www.radiopanik.org/media/sounds/les-promesses-de-l-aube/le-velo-qui-cache-la-forest_19696__1.ogg" type="audio/ogg">
+			</audio>
+			<p class="radio-fallback">Le lecteur ne s'affiche pas ? <a href="https://www.radiopanik.org/media/sounds/les-promesses-de-l-aube/le-velo-qui-cache-la-forest_19696__1.mp3" target="_blank" rel="noopener">écoutez directement le mp3</a>.</p>
+			<div class="radio-links">
+				<a href="https://www.radiopanik.org/media/sounds/les-promesses-de-l-aube/le-velo-qui-cache-la-forest_19696__1.mp3" target="_blank" rel="noopener">Télécharger MP3</a>
+				<a href="https://www.radiopanik.org/media/sounds/les-promesses-de-l-aube/le-velo-qui-cache-la-forest_19696__1.ogg" target="_blank" rel="noopener">Télécharger OGG</a>
+			</div>
+		</div>
+
+		<div class="radio-track">
+			<h4>La Chronique de Mimi</h4>
+			<audio controls preload="none">
+				<source src="https://www.radiopanik.org/media/sounds/les-promesses-de-l-aube/le-velo-qui-cache-la-forest_19697__0.mp3" type="audio/mpeg">
+				<source src="https://www.radiopanik.org/media/sounds/les-promesses-de-l-aube/le-velo-qui-cache-la-forest_19697__0.ogg" type="audio/ogg">
+			</audio>
+			<div class="radio-links">
+				<a href="https://www.radiopanik.org/media/sounds/les-promesses-de-l-aube/le-velo-qui-cache-la-forest_19697__0.mp3" target="_blank" rel="noopener">Télécharger MP3</a>
+				<a href="https://www.radiopanik.org/media/sounds/les-promesses-de-l-aube/le-velo-qui-cache-la-forest_19697__0.ogg" target="_blank" rel="noopener">Télécharger OGG</a>
+			</div>
+		</div>
+
+		<div class="radio-track">
+			<h4>Entretien avec Cyklopper.be</h4>
+			<audio controls preload="none">
+				<source src="https://www.radiopanik.org/media/sounds/les-promesses-de-l-aube/le-velo-qui-cache-la-forest_19698__0.mp3" type="audio/mpeg">
+				<source src="https://www.radiopanik.org/media/sounds/les-promesses-de-l-aube/le-velo-qui-cache-la-forest_19698__0.ogg" type="audio/ogg">
+			</audio>
+			<div class="radio-links">
+				<a href="https://www.radiopanik.org/media/sounds/les-promesses-de-l-aube/le-velo-qui-cache-la-forest_19698__0.mp3" target="_blank" rel="noopener">Télécharger MP3</a>
+				<a href="https://www.radiopanik.org/media/sounds/les-promesses-de-l-aube/le-velo-qui-cache-la-forest_19698__0.ogg" target="_blank" rel="noopener">Télécharger OGG</a>
+			</div>
+		</div>
+
+		<a class="radio-cta" href="https://www.radiopanik.org/emissions/les-promesses-de-l-aube/le-velo-qui-cache-la-forest/" target="_blank" rel="noopener">Voir l'émission sur Radio Panik →</a>
+	</section>
 
 	<a href="../" class="back-link">← Retour à cyklopper.be</a>
 
