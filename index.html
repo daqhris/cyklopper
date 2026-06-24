@@ -182,6 +182,69 @@
 		═══════════════════════════════════════════ */
 		[data-lang] { display: none; }
 		[data-lang].lang-active { display: inline; }
+		/* ── Fix i18n for block-level data-lang (div) ── */
+		div[data-lang] { display: none; }
+		div[data-lang].lang-active { display: block; }
+
+		/* ── Spectacle photo mosaic ── */
+		.spectacle-mosaic {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-template-rows: auto;
+			gap: 4px;
+			background: #111;
+			padding: 4px;
+		}
+		.spectacle-mosaic img {
+			width: 100%;
+			height: 200px;
+			object-fit: cover;
+			display: block;
+			transition: filter 0.2s, transform 0.2s;
+		}
+		/* Make the 7th image span full width for a balanced grid */
+		.spectacle-mosaic img:nth-child(7) {
+			grid-column: 1 / -1;
+			height: 160px;
+		}
+		.spectacle-mosaic img:hover {
+			filter: brightness(1.1);
+			transform: scale(1.01);
+			z-index: 1;
+			position: relative;
+		}
+		@media screen and (max-width: 992px) {
+			.spectacle-mosaic {
+				grid-template-columns: repeat(2, 1fr);
+			}
+			.spectacle-mosaic img:nth-child(7) {
+				grid-column: 1 / -1;
+			}
+		}
+		@media screen and (max-width: 600px) {
+			.spectacle-mosaic {
+				grid-template-columns: repeat(2, 1fr);
+			}
+			.spectacle-mosaic img { height: 130px; }
+			.spectacle-mosaic img:nth-child(7) { height: 100px; }
+		}
+
+		/* ── Programme block ── */
+		.programme-block {
+			font-size: clamp(0.9rem, 1.6vw, 1.3rem);
+			line-height: 1.5em;
+			margin-top: 1em;
+			border-top: 3px solid darkblue;
+			padding-top: 0.7em;
+		}
+		.programme-block ul {
+			margin: 0.4em 0 0.6em 1em;
+			list-style: none;
+			padding: 0;
+		}
+		.programme-block ul li {
+			line-height: 1.6em;
+		}
 	</style>
 </head>
 <body>
@@ -219,9 +282,59 @@
 					<span data-lang="nl">De werkplaats organiseert een jaarlijks festival met adembenemende voorstellingen, collectieve spelen, filmvertoningen en feestelijke verrassingen rond fietsen.</span>
 					<span data-lang="en">The workshop organises an annual festival featuring breathtaking performances, collective games, film screenings and festive surprises around bicycles.</span>
 				</p>
+				<br>
+				<!-- Au programme — moved here from below the gallery; div instead of span to allow block children (ul) -->
+				<div data-lang="fr" class="lang-active programme-block">
+					Au programme:
+					<ul>
+					<li>- Pumptrack de malade</li>
+					<li>- Spectacles avec la compagnie Ça Sent le Roussi, Mito, la Bike Life</li>
+					<li>- Initiations au Tall Bike, aux Tricks, au PumpTrack</li>
+					<li>- Des circuits pour petits et grandes avec les vélos fous de Cyclo et Little Bike Hug</li>
+					<li>- Des activités pour enfants et du tuning de vélo avec Nele et Joelle</li>
+					<li>- Des glaces, des pizzas, des smoothies</li>
+					</ul>
+					Le tout dans un lieu hors du commun!<br>
+					Ça se passe au <a href="https://maps.app.goo.gl/roxssnGmBLdxTFWe8" target="_blank">23 AV. DE LA VERRERIE, à FOREST</a>, de 14H à 22H.<br>
+					Si t'as pas de vélo, on t'en prête un.
+				</div>
+				<div data-lang="nl" class="programme-block">
+					Op het programma:
+					<ul>
+					<li>- Een waanzinnige pumptrack</li>
+					<li>- Voorstellingen met het gezelschap Ça Sent le Roussi, Mito en Bike Life</li>
+					<li>- Introductielessen in Tall Bike, tricks en de pumptrack</li>
+					<li>- Circuits voor jong en oud met de gekke fietsen van Cyclo en Little Bike Hug</li>
+					<li>- Activiteiten voor kinderen en fietstuning met Nele en Joelle</li>
+					<li>- IJsjes, pizza's, smoothies</li>
+					</ul>
+					Dit alles op een bijzondere locatie!<br>
+					Het vindt plaats op <a href="https://maps.app.goo.gl/roxssnGmBLdxTFWe8" target="_blank">GLASBLAZERIJLAAN 23, in VORST</a>, van 14.00 tot 22.00 uur.<br>
+					Als je geen fiets hebt, lenen we je er een.
+				</div>
+				<div data-lang="en" class="programme-block">
+					On the programme:
+					<ul>
+					<li>- An amazing pump track</li>
+					<li>- Performances by the Ça Sent le Roussi, Mito and Bike Life troupes</li>
+					<li>- Introductory sessions on tall bikes, tricks and the pump track</li>
+					<li>- Circuits for young and old with the crazy bikes from Cyclo and Little Bike Hug</li>
+					<li>- Activities for children and bike tuning with Nele and Joelle</li>
+					<li>- Ice creams, pizzas, smoothies</li>
+					</ul>
+					All this at a special venue!<br>
+					It's taking place at <a href="https://maps.app.goo.gl/roxssnGmBLdxTFWe8" target="_blank">23 Avenue de la Verrerie, in Forest</a>, from 2.00 pm to 10.00 pm.<br>
+					If you don't have a bike, we'll lend you one.
+				</div>
 			</div>
-			<div class="image">
-				<img src="images-bd/presentation.svg" alt="Illustration atelier vélo" />
+			<div class="image spectacle-mosaic">
+				<img src="images/5891058533283860031.jpg" alt="Spectacle vélo 1" />
+				<img src="images/5891058533283860032.jpg" alt="Spectacle vélo 2" />
+				<img src="images/5891058533283860033.jpg" alt="Spectacle vélo 3" />
+				<img src="images/5891058533283860035.jpg" alt="Spectacle vélo 4" />
+				<img src="images/51058533283860039.jpg" alt="Spectacle vélo 5" />
+				<img src="images/5291058533283860040.jpg" alt="Spectacle vélo 6" />
+				<img src="images/1%201058533283860037.jpg" alt="Spectacle vélo 7" />
 			</div>
 		</section>
 
@@ -248,50 +361,6 @@
 					<img src="cosmik-2025/photos/PXL_20250601_150651703.jpg" alt="">
 				</div>
 				<button class="gallery-btn gallery-btn--right" aria-label="Défiler à droite" onclick="scrollGallery(1)">&#8594;</button>
-			</div>
-			<div style="margin: 60px;">
-				<p>
-					<span data-lang="fr" class="lang-active">
-						Au programme: 
-						<ul>
-						<li>- Pumptrack de malade</li>
-						<li>- Spectacles avec la compagnie Ça Sent le Roussi, Mito, la Bike Life</li>
-						<li>- Initiations au Tall Bike, aux Tricks, au PumpTrack</li>
-						<li>- Des circuits pour petits et grandes avec les vélos fous de Cyclo et Little Bike Hug</li>
-						<li>- Des activités pour enfants et du tuning de vélo avec Nele et Joelle</li>
-						<li>- Des glaces, des pizzas, des smoothies</li>
-						</ul>
-						Le tout dans un lieu hors du commun!<br>
-						Ça se passe au <a href="https://maps.app.goo.gl/roxssnGmBLdxTFWe8" target="_blank">23 AV. DE LA VERRERIE, à FOREST</a>, de 14H à 22H.<br>
-						Si t'as pas de vélo, on t'en prête un.</span>
-
-					<span data-lang="nl">
-						Op het programma: 
-					<ul>
-					<li>- Een waanzinnige pumptrack</li>
-					<li>- Voorstellingen met het gezelschap Ça Sent le Roussi, Mito en Bike Life</li>
-					<li>- Introductielessen in Tall Bike, tricks en de pumptrack</li>
-					<li>- Circuits voor jong en oud met de gekke fietsen van Cyclo en Little Bike Hug</li>
-					<li>- Activiteiten voor kinderen en fietstuning met Nele en Joelle</li>
-					<li>- IJsjes, pizza’s, smoothies</li>
-					</ul>
-					Dit alles op een bijzondere locatie!<br>
-					Het vindt plaats op <a href="https://maps.app.goo.gl/roxssnGmBLdxTFWe8" target="_blank">GLASBLAZERIJLAAN 23, in VORST</a>, van 14.00 tot 22.00 uur.<br>
-					Als je geen fiets hebt, lenen we je er een.</span>
-					<span data-lang="en">
-						On the programme:
-						<ul>
-						<li>- An amazing pump track</li>
-						<li>- Performances by the Ça Sent le Roussi, Mito and Bike Life troupes</li>
-						<li>- Introductory sessions on tall bikes, tricks and the pump track</li>
-						<li>- Circuits for young and old with the crazy bikes from Cyclo and Little Bike Hug</li>
-						<li>- Activities for children and bike tuning with Nele and Joelle</li>
-						<li>- Ice creams, pizzas, smoothies</li>
-						</ul>
-						All this at a special venue!<br>
-						It’s taking place at <a href="https://maps.app.goo.gl/roxssnGmBLdxTFWe8" target="_blank">23 Avenue de la Verrerie, in Forest</a>, from 2.00 pm to 10.00 pm.<br>
-						If you don’t have a bike, we’ll lend you one.</span>
-				</p>
 			</div>
 		</section>
 
