@@ -711,30 +711,6 @@
 			}
 		})();
 
-		/* ── Language switch ── */
-		function setLang(lang) {
-			document.documentElement.lang = lang;
-			document.querySelectorAll('[data-lang]').forEach(function(el) {
-				el.classList.toggle('lang-active', el.dataset.lang === lang);
-			});
-			['fr', 'nl', 'en'].forEach(function(l) {
-				var btn = document.getElementById('lang-' + l);
-				if (btn) {
-					btn.classList.toggle('active', l === lang);
-					btn.setAttribute('aria-pressed', String(l === lang));
-				}
-			});
-			// Update countdown label language
-			updateCountdownLabels(lang);
-			localStorage.setItem('cyklopper-lang', lang);
-		}
-
-		// Restore persisted language preference on page load
-		(function() {
-			var saved = localStorage.getItem('cyklopper-lang');
-			if (saved && ['fr', 'nl', 'en'].includes(saved)) { setLang(saved); }
-		})();
-
 		/* ── Countdown ── */
 		// Festival start: 4 July 2026 at 14:00 CEST (= 12:00 UTC)
 		// Festival end:   5 July 2026 at 22:00 CEST (= 20:00 UTC)
@@ -750,9 +726,6 @@
 		};
 
 		function updateCountdownLabels(lang) {
-			var status = document.getElementById('countdown-status');
-			var lbl = document.querySelector('#c-days + .lbl') || document.querySelector('.clock-unit:first-child .lbl');
-			// update day/hours labels
 			var lblDays  = document.getElementById('c-days')  && document.getElementById('c-days').nextElementSibling;
 			var lblHours = document.getElementById('c-hours') && document.getElementById('c-hours').nextElementSibling;
 			if (lblDays)  lblDays.textContent  = countdownLabels.days[lang]  || 'jours';
@@ -792,6 +765,30 @@
 		}
 		tick();
 		setInterval(tick, 1000);
+
+		/* ── Language switch ── */
+		// Declared AFTER countdown variables so updateCountdownLabels() can safely reference them.
+		function setLang(lang) {
+			document.documentElement.lang = lang;
+			document.querySelectorAll('[data-lang]').forEach(function(el) {
+				el.classList.toggle('lang-active', el.dataset.lang === lang);
+			});
+			['fr', 'nl', 'en'].forEach(function(l) {
+				var btn = document.getElementById('lang-' + l);
+				if (btn) {
+					btn.classList.toggle('active', l === lang);
+					btn.setAttribute('aria-pressed', String(l === lang));
+				}
+			});
+			updateCountdownLabels(lang);
+			localStorage.setItem('cyklopper-lang', lang);
+		}
+
+		// Restore persisted language preference on page load — runs last, after everything is defined.
+		(function() {
+			var saved = localStorage.getItem('cyklopper-lang');
+			if (saved && ['fr', 'nl', 'en'].includes(saved)) { setLang(saved); }
+		})();
 	</script>
 </body>
 </html>
