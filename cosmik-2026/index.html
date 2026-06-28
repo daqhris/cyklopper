@@ -42,6 +42,12 @@
 			padding: 0;
 		}
 
+		/* ── i18n ── */
+		[data-lang] { display: none; }
+		[data-lang].lang-active { display: inline; }
+		div[data-lang] { display: none; }
+		div[data-lang].lang-active { display: block; }
+
 		/* ── Ticker top ── */
 		.ticker-top {
 			position: fixed;
@@ -75,7 +81,7 @@
 			overflow: hidden;
 		}
 
-		/* Poster image as hero background/element */
+		/* Poster image */
 		.poster-wrap {
 			position: relative;
 			width: 100%;
@@ -90,7 +96,31 @@
 			border-radius: 2px;
 			box-shadow: 0 0 60px rgba(255,255,0,0.15);
 		}
-		/* Fallback if no poster yet */
+
+		/* ── Poster download button ── */
+		.poster-download {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.45rem;
+			margin-top: 0.85rem;
+			background: #FFFF00;
+			color: #111;
+			font-family: 'hanken', sans-serif;
+			font-size: 0.78rem;
+			font-weight: 800;
+			letter-spacing: 0.07em;
+			text-transform: uppercase;
+			text-decoration: none;
+			padding: 0.5rem 1.1rem;
+			border-radius: 2px;
+			border: none;
+			cursor: pointer;
+			transition: background 0.15s, color 0.15s;
+		}
+		.poster-download:hover { background: #fff; color: #000; }
+		.poster-download svg { flex-shrink: 0; }
+
+		/* Fallback placeholder if no poster image yet */
 		.poster-placeholder {
 			width: 100%;
 			max-width: 480px;
@@ -222,6 +252,115 @@
 			display: block;
 		}
 
+		/* ── Programme / lineup section ──
+		   Lighter background to contrast with the dark page — inspired by
+		   the darkblue accent used on the homepage's programme block,
+		   but brightened so it reads clearly on the dark page. ── */
+		.programme-section {
+			background: #1c1c38;   /* deep navy — lighter than #0a0a0a, echoes homepage darkblue accent */
+			border-top: 3px solid #2a2a60;
+			border-bottom: 3px solid #2a2a60;
+			padding: 2.5rem 1.5rem;
+		}
+		.programme-inner {
+			max-width: 700px;
+			margin: 0 auto;
+		}
+		.programme-header {
+			display: flex;
+			align-items: baseline;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			gap: 1rem;
+			margin-bottom: 1.5rem;
+		}
+		.programme-header h2 {
+			color: #FFFF00;
+			font-size: 1.4rem;
+			border-bottom: 1.5px solid #3a3a70;
+			padding-bottom: 0.5rem;
+			margin: 0;
+			flex: 1 1 auto;
+		}
+
+		/* ── Language switcher (inside programme section) ── */
+		.lang-switcher {
+			display: flex;
+			gap: 0.4rem;
+			flex-shrink: 0;
+		}
+		.lang-btn {
+			background: transparent;
+			border: 1.5px solid #555;
+			color: #aaa;
+			font-family: 'hanken', sans-serif;
+			font-size: 0.72rem;
+			font-weight: 800;
+			letter-spacing: 0.1em;
+			padding: 0.25rem 0.6rem;
+			border-radius: 2px;
+			cursor: pointer;
+			transition: background 0.15s, color 0.15s, border-color 0.15s;
+		}
+		.lang-btn:hover { border-color: #FFFF00; color: #FFFF00; }
+		.lang-btn.active {
+			background: #FFFF00;
+			color: #111;
+			border-color: #FFFF00;
+		}
+
+		/* Programme text blocks */
+		.programme-block {
+			font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+			line-height: 1.65;
+			color: #d0d0d0;
+		}
+		.programme-block .day-header {
+			font-weight: 900;
+			color: #FFFF00;
+			font-size: 1rem;
+			letter-spacing: 0.08em;
+			margin-top: 1.4rem;
+			margin-bottom: 0.2rem;
+		}
+		.programme-block .time-range {
+			font-size: 0.82rem;
+			color: #888;
+			margin-bottom: 0.6rem;
+		}
+		.programme-block ul {
+			margin: 0.3em 0 0.8em 0;
+			list-style: none;
+			padding: 0;
+		}
+		.programme-block ul li::before {
+			content: '·  ';
+			color: #FFFF00;
+			font-weight: 700;
+		}
+		.programme-block ul li { line-height: 1.7; }
+		.programme-block .timed-event {
+			margin: 0.35rem 0;
+		}
+		.programme-block .timed-event .t {
+			color: #FFFF00;
+			font-weight: 700;
+			font-size: 0.88rem;
+			margin-right: 0.3rem;
+		}
+		.programme-block .venue-note {
+			font-size: 0.78rem;
+			color: #666;
+		}
+		.programme-block .closing-note {
+			margin-top: 1.2rem;
+			font-size: 0.9rem;
+			color: #aaa;
+		}
+		.programme-block a { color: #FFFF00; }
+		.programme-block a:hover { color: #fff; }
+
+		/* ── CTA band ── */
 		.cta-band {
 			background: #FFFF00;
 			color: #111;
@@ -242,6 +381,21 @@
 			margin-top: 0.5rem;
 		}
 		.cta-band a:hover { background: #333; }
+
+		.address-section {
+			max-width: 700px;
+			margin: 0 auto;
+			padding: 2rem 1.5rem;
+			color: #ccc;
+		}
+		.address-section h2 {
+			color: #FFFF00;
+			font-size: 1.4rem;
+			border-bottom: 1.5px solid #333;
+			padding-bottom: 0.5rem;
+			margin-bottom: 1rem;
+		}
+		.address-section a { color: #FFFF00; }
 
 		.back-link {
 			display: inline-block;
@@ -266,14 +420,26 @@
 <body>
 
 	<div class="ticker-top">
-		<marquee scrollamount="8">COSMIK BIKE FESTIVAL 2026 — 2ÈME ÉDITION MONDIALE DU VÉLO DE FOREST &nbsp;·&nbsp; 4 ET 5 JUILLET 2026 &nbsp;·&nbsp; ZONNEKLOPPER, FOREST, BRUXELLES &nbsp;·&nbsp; PARTICIPEZ — BÉNÉVOLES BIENVENUS &nbsp;·&nbsp;</marquee>
+		<marquee scrollamount="8">
+			<span data-lang="fr" class="lang-active">COSMIK BIKE FESTIVAL 2026 — 2ÈME ÉDITION MONDIALE DU VÉLO DE FOREST &nbsp;·&nbsp; 4 ET 5 JUILLET 2026 &nbsp;·&nbsp; ZONNEKLOPPER, FOREST, BRUXELLES &nbsp;·&nbsp; PARTICIPEZ — BÉNÉVOLES BIENVENUS &nbsp;·&nbsp;</span>
+			<span data-lang="nl">COSMIK BIKE FESTIVAL 2026 — 2E WERELDFIETSFEEST VAN FOREST &nbsp;·&nbsp; 4 EN 5 JULI 2026 &nbsp;·&nbsp; ZONNEKLOPPER, VORST, BRUSSEL &nbsp;·&nbsp; DOE MEE — VRIJWILLIGERS WELKOM &nbsp;·&nbsp;</span>
+			<span data-lang="en">COSMIK BIKE FESTIVAL 2026 — 2ND WORLD CYCLING FESTIVAL OF FOREST &nbsp;·&nbsp; JULY 4–5, 2026 &nbsp;·&nbsp; ZONNEKLOPPER, FOREST, BRUSSELS &nbsp;·&nbsp; JOIN US — VOLUNTEERS WELCOME &nbsp;·&nbsp;</span>
+		</marquee>
 	</div>
 
 	<section class="hero">
-		<!-- Poster: place poster image at cosmik-2026/poster.jpg (or adapt src) -->
-		<!-- If poster exists, show it; script below reveals whichever loads -->
+		<!-- Poster: real image shown if it loads, else fallback placeholder -->
 		<div class="poster-wrap" id="poster-wrap" style="display:none">
 			<img id="poster-img" src="poster.jpg" alt="Affiche Cosmik Bike Festival 2026">
+			<!-- Download button sits below the poster image -->
+			<a id="poster-download-btn" href="poster.jpg" download="Cosmik-Bike-Festival-2026-affiche.jpg" class="poster-download" aria-label="Télécharger l'affiche">
+				<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+					<path d="M7 1v8M4 7l3 3 3-3M2 11h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+				<span data-lang="fr" class="lang-active">Télécharger l'affiche</span>
+				<span data-lang="nl">Affiche downloaden</span>
+				<span data-lang="en">Download poster</span>
+			</a>
 		</div>
 		<!-- Fallback shown until/unless poster loads -->
 		<div class="poster-placeholder" id="poster-placeholder">
@@ -295,36 +461,223 @@
 		</div>
 	</section>
 
+	<!-- ── About section ── -->
 	<div class="info-section">
-		<h2>À propos du festival</h2>
-		<p>Le <strong>Cosmik Bike Festival</strong> est une fête mondiale du vélo organisée à Zonneklopper, un espace traversant l'îlot entre l'avenue de la Verrerie et la chaussée de Neerstalle à Forest, Bruxelles.</p>
-		<p>Spectacles, ateliers, projections, musique, vélos fous — tout cela autour de projets non commerciaux et festifs. Si vous avez un projet vélo, fou, fabuleux, joyeux : rejoignez-nous.</p>
+		<h2>
+			<span data-lang="fr" class="lang-active">À propos du festival</span>
+			<span data-lang="nl">Over het festival</span>
+			<span data-lang="en">About the festival</span>
+		</h2>
+		<p>
+			<span data-lang="fr" class="lang-active">Le <strong>Cosmik Bike Festival</strong> est une fête mondiale du vélo organisée à Zonneklopper, un espace traversant l'îlot entre l'avenue de la Verrerie et la chaussée de Neerstalle à Forest, Bruxelles.</span>
+			<span data-lang="nl">Het <strong>Cosmik Bike Festival</strong> is een wereldwijd fietsfeest dat plaatsvindt in Zonneklopper, een ruimte die het huizenblok doorkruist tussen de Glasblazerijlaan en de Neerstalsesteenweg in Vorst, Brussel.</span>
+			<span data-lang="en">The <strong>Cosmik Bike Festival</strong> is a world cycling celebration held at Zonneklopper, a space running through the block between avenue de la Verrerie and chaussée de Neerstalle in Forest, Brussels.</span>
+		</p>
+		<p>
+			<span data-lang="fr" class="lang-active">Spectacles, ateliers, projections, musique, vélos fous — tout cela autour de projets non commerciaux et festifs. Si vous avez un projet vélo, fou, fabuleux, joyeux : rejoignez-nous.</span>
+			<span data-lang="nl">Voorstellingen, workshops, filmvertoningen, muziek, gekke fietsen — allemaal rond niet-commerciële en feestelijke projecten. Als je een fietsproject hebt, gek, fabelachtig, vrolijk: doe mee!</span>
+			<span data-lang="en">Performances, workshops, screenings, music, crazy bikes — all centred around non-commercial and festive projects. If you have a bike project, wild, fabulous, joyful: join us.</span>
+		</p>
 
-		<h2>Lieux et capacités</h2>
+		<h2>
+			<span data-lang="fr" class="lang-active">Lieux et capacités</span>
+			<span data-lang="nl">Locaties en capaciteit</span>
+			<span data-lang="en">Venues &amp; capacity</span>
+		</h2>
 		<div class="venue-grid">
-			<div class="venue-item"><span class="v-num">1000</span><span class="v-lbl">m² extérieur</span></div>
-			<div class="venue-item"><span class="v-num">1000</span><span class="v-lbl">m² intérieur</span></div>
-			<div class="venue-item"><span class="v-num">1</span><span class="v-lbl">salle concert</span></div>
-			<div class="venue-item"><span class="v-num">1</span><span class="v-lbl">salle projection</span></div>
-			<div class="venue-item"><span class="v-num">1</span><span class="v-lbl">atelier vélo</span></div>
+			<div class="venue-item"><span class="v-num">1000</span><span class="v-lbl"><span data-lang="fr" class="lang-active">m² extérieur</span><span data-lang="nl">m² buiten</span><span data-lang="en">m² outdoor</span></span></div>
+			<div class="venue-item"><span class="v-num">1000</span><span class="v-lbl"><span data-lang="fr" class="lang-active">m² intérieur</span><span data-lang="nl">m² binnen</span><span data-lang="en">m² indoor</span></span></div>
+			<div class="venue-item"><span class="v-num">1</span><span class="v-lbl"><span data-lang="fr" class="lang-active">salle concert</span><span data-lang="nl">concertzaal</span><span data-lang="en">concert hall</span></span></div>
+			<div class="venue-item"><span class="v-num">1</span><span class="v-lbl"><span data-lang="fr" class="lang-active">salle projection</span><span data-lang="nl">filmzaal</span><span data-lang="en">screening room</span></span></div>
+			<div class="venue-item"><span class="v-num">1</span><span class="v-lbl"><span data-lang="fr" class="lang-active">atelier vélo</span><span data-lang="nl">fietswerkplaats</span><span data-lang="en">bike workshop</span></span></div>
 			<div class="venue-item"><span class="v-num">1</span><span class="v-lbl">bar</span></div>
 		</div>
-
-		<h2>Programme</h2>
-		<p><em>Le lineup sera annoncé prochainement. Revenez nous voir.</em></p>
-
-		<h2>Adresse</h2>
-		<p>Zonneklopper — 23 avenue de la Verrerie, 1190 Forest, Belgique.<br>
-		<a href="https://www.openstreetmap.org/?mlat=50.8163&mlon=4.3363#map=17/50.8163/4.3363" target="_blank" rel="noopener" style="color:#FFFF00;">Voir sur OpenStreetMap →</a></p>
 	</div>
 
+	<!-- ── Programme / Lineup section — lighter background ── -->
+	<section class="programme-section">
+		<div class="programme-inner">
+			<div class="programme-header">
+				<h2>
+					<span data-lang="fr" class="lang-active">Programme</span>
+					<span data-lang="nl">Programma</span>
+					<span data-lang="en">Programme</span>
+				</h2>
+				<div class="lang-switcher" role="group" aria-label="Language / Langue / Taal">
+					<button class="lang-btn active" id="lang-fr" onclick="setLang('fr')" aria-pressed="true"  aria-label="Français">FR</button>
+					<button class="lang-btn"        id="lang-nl" onclick="setLang('nl')" aria-pressed="false" aria-label="Nederlands">NL</button>
+					<button class="lang-btn"        id="lang-en" onclick="setLang('en')" aria-pressed="false" aria-label="English">EN</button>
+				</div>
+			</div>
+
+			<!-- FRENCH -->
+			<div data-lang="fr" class="programme-block lang-active">
+				<div class="day-header">SAMEDI</div>
+				<div class="time-range">14h00 – 18h30</div>
+				<ul>
+					<li>Peinture à roulette</li>
+					<li>Parcours vélos folies, tuktuk, low rider,.. licorne</li>
+					<li>Pimp my bike</li>
+					<li>Initiation Tall bike</li>
+					<li>Initiation Bike life</li>
+					<li>Pumptrack</li>
+					<li>Glace, pizzas, smoothie et bar</li>
+				</ul>
+				<div class="timed-event"><span class="t">16h00</span> — Spectacle Mito Monocycle et jonglerie</div>
+				<div class="timed-event"><span class="t">16h30</span> — Show Bikelife</div>
+				<div class="timed-event"><span class="t">17h30</span> — Projections, Cycle éToile <span class="venue-note">(grande salle)</span></div>
+				<div class="timed-event"><span class="t">18h30</span> — Spectacle « Ça sent le roussi » <span class="venue-note">(grande halle)</span></div>
+				<div class="timed-event"><span class="t">20h00</span> — Brass Band (fanfare)</div>
+
+				<div class="day-header">DIMANCHE</div>
+				<div class="time-range">14h – 20h</div>
+				<ul>
+					<li>Parcours vélo folies, licorne, tuktuk, low rider</li>
+					<li>Pimp my bike</li>
+					<li>Initiation tall bike</li>
+					<li>Initiation bike live</li>
+					<li>Glaces, pizzas, smoothie et bar</li>
+					<li>Pumptrack</li>
+				</ul>
+				<div class="timed-event"><span class="t">14h30 – 17h</span> — Little bike hug, parcours vélos peluche</div>
+				<div class="timed-event"><span class="t">15h – 16h</span> — Animations pour enfants circuit</div>
+				<div class="timed-event"><span class="t">16h</span> — Écoute Voyage, Radio Marie Christine <span class="venue-note">(grande salle)</span></div>
+				<div class="timed-event"><span class="t">17h</span> — Spectacle de Mito</div>
+				<div class="timed-event"><span class="t">18h</span> — Spectacle Bike Life</div>
+				<div class="timed-event"><span class="t">18h – 20h</span> — Émission Radio</div>
+
+				<p class="closing-note">
+					Le tout dans un lieu hors du commun !<br>
+					Ça se passe au <a href="https://maps.app.goo.gl/roxssnGmBLdxTFWe8" target="_blank" rel="noopener">23 AV. DE LA VERRERIE, à FOREST</a>, de 14H à 22H.<br>
+					Si t'as pas de vélo, on t'en prête un.
+				</p>
+			</div>
+
+			<!-- DUTCH -->
+			<div data-lang="nl" class="programme-block">
+				<div class="day-header">ZATERDAG</div>
+				<div class="time-range">14.00 – 18.30 uur</div>
+				<ul>
+					<li>Schilderen met een rol</li>
+					<li>Fietsparcours: gekke fietsen, tuktuk, lowrider, ... eenhoorn</li>
+					<li>Pimp my bike</li>
+					<li>Kennismaking met de tallbike</li>
+					<li>Kennismaking met Bike Life</li>
+					<li>Pumptrack</li>
+					<li>IJs, pizza's, smoothies en bar</li>
+				</ul>
+				<div class="timed-event"><span class="t">16.00 uur</span> — Optreden Mito Monocycle en jongleren</div>
+				<div class="timed-event"><span class="t">16.30 uur</span> — Bikelife-show</div>
+				<div class="timed-event"><span class="t">17.30 uur</span> — Filmvertoningen, Cycle éToile <span class="venue-note">(grote zaal)</span></div>
+				<div class="timed-event"><span class="t">18.30 uur</span> — Voorstelling „Ça sent le roussi" <span class="venue-note">(grote hal)</span></div>
+				<div class="timed-event"><span class="t">20.00 uur</span> — Brassband (fanfare)</div>
+
+				<div class="day-header">ZONDAG</div>
+				<div class="time-range">14.00 – 20.00 uur</div>
+				<ul>
+					<li>Fietsparcours met gekke fietsen, eenhoorns, tuktuks en lowriders</li>
+					<li>Pimp my bike</li>
+					<li>Kennismaking met de tall bike</li>
+					<li>Kennismaking met Bike Life</li>
+					<li>IJs, pizza's, smoothies en bar</li>
+					<li>Pumptrack</li>
+				</ul>
+				<div class="timed-event"><span class="t">14.30 – 17.00 uur</span> — Little bike hug, parcours met knuffelfietsen</div>
+				<div class="timed-event"><span class="t">15.00 – 16.00 uur</span> — Kinderanimatie op het circuit</div>
+				<div class="timed-event"><span class="t">16.00 uur</span> — Écoute Voyage, Radio Marie Christine <span class="venue-note">(grote zaal)</span></div>
+				<div class="timed-event"><span class="t">17.00 uur</span> — Optreden van Mito</div>
+				<div class="timed-event"><span class="t">18.00 uur</span> — Optreden Bike Life</div>
+				<div class="timed-event"><span class="t">18.00 – 20.00 uur</span> — Radiouitzending</div>
+
+				<p class="closing-note">
+					Dit alles op een buitengewone locatie!<br>
+					Het vindt plaats op <a href="https://maps.app.goo.gl/roxssnGmBLdxTFWe8" target="_blank" rel="noopener">AV. DE LA VERRERIE 23, in FOREST</a>, van 14.00 tot 22.00 uur.<br>
+					Als je geen fiets hebt, lenen we je er een.
+				</p>
+			</div>
+
+			<!-- ENGLISH -->
+			<div data-lang="en" class="programme-block">
+				<div class="day-header">SATURDAY</div>
+				<div class="time-range">2:00 pm – 6:30 pm</div>
+				<ul>
+					<li>Roller painting</li>
+					<li>Cycle fun course: tuktuk, low rider, unicorn, etc.</li>
+					<li>Pimp my bike</li>
+					<li>Tall bike lessons</li>
+					<li>Bike Life lessons</li>
+					<li>Pumptrack</li>
+					<li>Ice cream, pizzas, smoothies and bar</li>
+				</ul>
+				<div class="timed-event"><span class="t">4:00 pm</span> — Mito Unicycle and juggling show</div>
+				<div class="timed-event"><span class="t">4:30 pm</span> — Bikelife show</div>
+				<div class="timed-event"><span class="t">5:30 pm</span> — Film screenings, Cycle éToile <span class="venue-note">(main hall)</span></div>
+				<div class="timed-event"><span class="t">6:30 pm</span> — 'Ça sent le roussi' show <span class="venue-note">(main hall)</span></div>
+				<div class="timed-event"><span class="t">8:00 pm</span> — Brass band</div>
+
+				<div class="day-header">SUNDAY</div>
+				<div class="time-range">2:00 pm – 8:00 pm</div>
+				<ul>
+					<li>Crazy bike course, unicorn, tuktuk, low rider</li>
+					<li>Pimp my bike</li>
+					<li>Tall bike initiation</li>
+					<li>Bike Life initiation</li>
+					<li>Ice cream, pizzas, smoothies and bar</li>
+					<li>Pumptrack</li>
+				</ul>
+				<div class="timed-event"><span class="t">2:30 pm – 5:00 pm</span> — Little Bike Hug, soft toy bike course</div>
+				<div class="timed-event"><span class="t">3:00 pm – 4:00 pm</span> — Children's playground circuit</div>
+				<div class="timed-event"><span class="t">4:00 pm</span> — Écoute Voyage, Radio Marie Christine <span class="venue-note">(main hall)</span></div>
+				<div class="timed-event"><span class="t">5:00 pm</span> — Mito's show</div>
+				<div class="timed-event"><span class="t">6:00 pm</span> — Bike Life show</div>
+				<div class="timed-event"><span class="t">6:00 pm – 8:00 pm</span> — Radio broadcast</div>
+
+				<p class="closing-note">
+					All taking place in a truly unique venue!<br>
+					It's at <a href="https://maps.app.goo.gl/roxssnGmBLdxTFWe8" target="_blank" rel="noopener">23 Avenue de la Verrerie, Forest</a>, from 2 pm to 10 pm.<br>
+					If you don't have a bike, we'll lend you one.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- ── Address ── -->
+	<div class="address-section">
+		<h2>
+			<span data-lang="fr" class="lang-active">Adresse</span>
+			<span data-lang="nl">Adres</span>
+			<span data-lang="en">Address</span>
+		</h2>
+		<p>
+			<span data-lang="fr" class="lang-active">Zonneklopper — 23 avenue de la Verrerie, 1190 Forest, Belgique.<br>
+			<a href="https://www.openstreetmap.org/?mlat=50.8163&mlon=4.3363#map=17/50.8163/4.3363" target="_blank" rel="noopener">Voir sur OpenStreetMap →</a></span>
+			<span data-lang="nl">Zonneklopper — Glasblazerijlaan 23, 1190 Vorst, België.<br>
+			<a href="https://www.openstreetmap.org/?mlat=50.8163&mlon=4.3363#map=17/50.8163/4.3363" target="_blank" rel="noopener">Bekijk op OpenStreetMap →</a></span>
+			<span data-lang="en">Zonneklopper — 23 avenue de la Verrerie, 1190 Forest, Belgium.<br>
+			<a href="https://www.openstreetmap.org/?mlat=50.8163&mlon=4.3363#map=17/50.8163/4.3363" target="_blank" rel="noopener">View on OpenStreetMap →</a></span>
+		</p>
+	</div>
+
+	<!-- ── CTA ── -->
 	<div class="cta-band">
-		<h2>Vous avez un projet vélo ?</h2>
-		<p>Proposez-nous par mail une animation, un atelier, un spectacle ou une performance.</p>
-		<a href="https://lite.framacalc.org/3nnifnwayr-aliy" target="_blank" rel="noopener">S'inscrire comme bénévole (shift défrayé) →</a>
+		<h2>
+			<span data-lang="fr" class="lang-active">Vous avez un projet vélo ?</span>
+			<span data-lang="nl">Heb je een fietsproject?</span>
+			<span data-lang="en">Got a bike project?</span>
+		</h2>
+		<p>
+			<span data-lang="fr" class="lang-active">Proposez-nous par mail une animation, un atelier, un spectacle ou une performance.</span>
+			<span data-lang="nl">Stel ons per mail een animatie, workshop, voorstelling of performance voor.</span>
+			<span data-lang="en">Send us an email to propose an activity, workshop, show or performance.</span>
+		</p>
+		<a href="https://lite.framacalc.org/3nnifnwayr-aliy" target="_blank" rel="noopener">
+			<span data-lang="fr" class="lang-active">S'inscrire comme bénévole (shift défrayé) →</span>
+			<span data-lang="nl">Inschrijven als vrijwilliger (shift vergoed) →</span>
+			<span data-lang="en">Sign up as a volunteer (shift compensated) →</span>
+		</a>
 	</div>
 
-	<a href="../" class="back-link">← Retour à cyklopper.be</a>
+	<a href="../" class="back-link">← <span data-lang="fr" class="lang-active">Retour à cyklopper.be</span><span data-lang="nl">Terug naar cyklopper.be</span><span data-lang="en">Back to cyklopper.be</span></a>
 
 	<footer>
 		<section style="display:flex; gap:1rem; justify-content:center; padding:2rem 1rem;">
@@ -335,12 +688,10 @@
 	</footer>
 
 	<script>
-		/* ── Poster: show real image if it loads, else keep placeholder ──
-		   Check .complete first: if the browser already fired load/error
-		   before this script ran, the event handlers would never fire. ── */
+		/* ── Poster: show real image if it loads, else keep placeholder ── */
 		(function () {
-			var img = document.getElementById('poster-img');
-			var wrap = document.getElementById('poster-wrap');
+			var img         = document.getElementById('poster-img');
+			var wrap        = document.getElementById('poster-wrap');
 			var placeholder = document.getElementById('poster-placeholder');
 
 			function showPoster() {
@@ -353,7 +704,6 @@
 			}
 
 			if (img.complete) {
-				// Browser already settled — check naturalWidth to distinguish load vs error
 				if (img.naturalWidth > 0) { showPoster(); } else { showPlaceholder(); }
 			} else {
 				img.addEventListener('load', showPoster);
@@ -361,40 +711,84 @@
 			}
 		})();
 
-		/* ── Countdown ── */
-		// Festival: 4 July 2026 at 14:00 CEST (= UTC+2 → 12:00 UTC)
-		// End:      5 July 2026 at 23:59 CEST (= 21:59 UTC)
-		const START = new Date('2026-07-04T12:00:00Z');
-		const END   = new Date('2026-07-05T21:59:00Z');
+		/* ── Language switch ── */
+		function setLang(lang) {
+			document.documentElement.lang = lang;
+			document.querySelectorAll('[data-lang]').forEach(function(el) {
+				el.classList.toggle('lang-active', el.dataset.lang === lang);
+			});
+			['fr', 'nl', 'en'].forEach(function(l) {
+				var btn = document.getElementById('lang-' + l);
+				if (btn) {
+					btn.classList.toggle('active', l === lang);
+					btn.setAttribute('aria-pressed', String(l === lang));
+				}
+			});
+			// Update countdown label language
+			updateCountdownLabels(lang);
+			localStorage.setItem('cyklopper-lang', lang);
+		}
 
-		const pad = n => String(n).padStart(2, '0');
+		// Restore persisted language preference on page load
+		(function() {
+			var saved = localStorage.getItem('cyklopper-lang');
+			if (saved && ['fr', 'nl', 'en'].includes(saved)) { setLang(saved); }
+		})();
+
+		/* ── Countdown ── */
+		// Festival start: 4 July 2026 at 14:00 CEST (= 12:00 UTC)
+		// Festival end:   5 July 2026 at 22:00 CEST (= 20:00 UTC)
+		var START = new Date('2026-07-04T12:00:00Z');
+		var END   = new Date('2026-07-05T20:00:00Z');
+
+		var countdownLabels = {
+			status: { fr: 'COMPTE À REBOURS', nl: 'AFTELLEN', en: 'COUNTDOWN' },
+			live:   { fr: '🎉 C\'EST MAINTENANT — VENEZ !', nl: '🎉 HET IS NU — KOM JE?', en: '🎉 IT\'S HAPPENING NOW — COME!' },
+			over:   { fr: 'FESTIVAL TERMINÉ — À L\'AN PROCHAIN !', nl: 'FESTIVAL VOORBIJ — TOT VOLGEND JAAR!', en: 'FESTIVAL OVER — SEE YOU NEXT YEAR!' },
+			days:   { fr: 'jours', nl: 'dagen', en: 'days' },
+			hours:  { fr: 'heures', nl: 'uren', en: 'hours' }
+		};
+
+		function updateCountdownLabels(lang) {
+			var status = document.getElementById('countdown-status');
+			var lbl = document.querySelector('#c-days + .lbl') || document.querySelector('.clock-unit:first-child .lbl');
+			// update day/hours labels
+			var lblDays  = document.getElementById('c-days')  && document.getElementById('c-days').nextElementSibling;
+			var lblHours = document.getElementById('c-hours') && document.getElementById('c-hours').nextElementSibling;
+			if (lblDays)  lblDays.textContent  = countdownLabels.days[lang]  || 'jours';
+			if (lblHours) lblHours.textContent = countdownLabels.hours[lang] || 'heures';
+		}
+
+		var pad = function(n) { return String(n).padStart(2, '0'); };
 
 		function tick() {
-			const now = new Date();
-			const status = document.getElementById('countdown-status');
-			const clock  = document.getElementById('clock');
+			var now    = new Date();
+			var status = document.getElementById('countdown-status');
+			var clock  = document.getElementById('clock');
+			var lang   = localStorage.getItem('cyklopper-lang') || 'fr';
 
 			if (now >= END) {
-				status.textContent = 'FESTIVAL TERMINÉ — À L\'AN PROCHAIN !';
+				status.textContent = countdownLabels.over[lang];
 				clock.innerHTML = '';
 				return;
 			}
 			if (now >= START) {
 				status.textContent = '';
-				clock.innerHTML = '<span class="festival-live">🎉 C\'EST MAINTENANT — VENEZ !</span>';
+				clock.innerHTML = '<span class="festival-live">' + countdownLabels.live[lang] + '</span>';
 				return;
 			}
 
-			const diff = START - now;
-			const d = Math.floor(diff / 86400000);
-			const h = Math.floor((diff % 86400000) / 3600000);
-			const m = Math.floor((diff % 3600000) / 60000);
-			const s = Math.floor((diff % 60000) / 1000);
+			var diff = START - now;
+			var d = Math.floor(diff / 86400000);
+			var h = Math.floor((diff % 86400000) / 3600000);
+			var m = Math.floor((diff % 3600000) / 60000);
+			var s = Math.floor((diff % 60000) / 1000);
 
 			document.getElementById('c-days').textContent  = d;
 			document.getElementById('c-hours').textContent = pad(h);
 			document.getElementById('c-mins').textContent  = pad(m);
 			document.getElementById('c-secs').textContent  = pad(s);
+			status.textContent = countdownLabels.status[lang];
 		}
 		tick();
 		setInterval(tick, 1000);
